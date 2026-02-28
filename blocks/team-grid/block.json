@@ -8,7 +8,7 @@
     "icon": "groups",
     "description": "Team member grid with images, names, roles, and optional bios. Hairline-bordered layout.",
     "keywords": ["team", "members", "people", "staff", "about"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": { "type": "string", "default": "" },
         "title": { "type": "string", "default": "" },

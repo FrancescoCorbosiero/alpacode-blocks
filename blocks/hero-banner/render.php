@@ -91,11 +91,11 @@ $overlay_pct = intval($overlay_opacity) / 100;
 
     <?php if ($has_slides) : ?>
     <!-- Slide indicators -->
-    <div class="ac-hero-banner__dots" role="tablist" aria-label="<?php esc_attr_e('Slide navigation', 'alpacode-blocks'); ?>">
+    <div class="ac-hero-banner__dots" role="tablist" aria-label="<?php esc_attr_e('Slide navigation', 'alpacode'); ?>">
         <?php for ($i = 0; $i < count($slides); $i++) : ?>
             <button class="ac-hero-banner__dot<?php echo $i === 0 ? ' ac-hero-banner__dot--active' : ''; ?>"
                 role="tab"
-                aria-label="<?php echo esc_attr(sprintf(__('Slide %d', 'alpacode-blocks'), $i + 1)); ?>"
+                aria-label="<?php echo esc_attr(sprintf(__('Slide %d', 'alpacode'), $i + 1)); ?>"
                 <?php echo $i === 0 ? 'aria-selected="true"' : 'aria-selected="false"'; ?>
                 data-wp-on--click="actions.goToSlide"
                 data-wp-class--ac-hero-banner__dot--active="state.isActiveDot_<?php echo esc_attr($i); ?>"

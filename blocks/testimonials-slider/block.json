@@ -8,7 +8,7 @@
     "icon": "format-quote",
     "description": "Drag carousel of testimonials with dots navigation. Crossfade transitions.",
     "keywords": ["testimonials", "slider", "carousel", "reviews", "quotes"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

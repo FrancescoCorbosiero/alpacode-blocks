@@ -8,7 +8,7 @@
     "icon": "backup",
     "description": "Vertical timeline with steps, dates, and descriptions. Hairline connector with dot markers.",
     "keywords": ["timeline", "history", "process", "steps", "milestones"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": { "type": "string", "default": "" },
         "title": { "type": "string", "default": "" },

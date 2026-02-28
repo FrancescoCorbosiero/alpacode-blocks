@@ -60,7 +60,7 @@ class AC_Contact_Form {
             // Silently reject bots
             return new WP_REST_Response([
                 'success' => true,
-                'message' => __('Message sent successfully.', 'alpacode-blocks'),
+                'message' => __('Message sent successfully.', 'alpacode'),
             ], 200);
         }
 
@@ -72,7 +72,7 @@ class AC_Contact_Form {
         if ($attempts >= self::RATE_LIMIT) {
             return new WP_REST_Response([
                 'success' => false,
-                'message' => __('Too many submissions. Please try again later.', 'alpacode-blocks'),
+                'message' => __('Too many submissions. Please try again later.', 'alpacode'),
             ], 429);
         }
 
@@ -86,7 +86,7 @@ class AC_Contact_Form {
         $to      = apply_filters('ac_contact_form_recipient', get_option('admin_email'));
         $subject = apply_filters(
             'ac_contact_form_subject',
-            sprintf(__('Contact form: %s', 'alpacode-blocks'), $name)
+            sprintf(__('Contact form: %s', 'alpacode'), $name)
         );
 
         $body = sprintf(
@@ -106,13 +106,13 @@ class AC_Contact_Form {
         if ($sent) {
             return new WP_REST_Response([
                 'success' => true,
-                'message' => __('Message sent successfully.', 'alpacode-blocks'),
+                'message' => __('Message sent successfully.', 'alpacode'),
             ], 200);
         }
 
         return new WP_REST_Response([
             'success' => false,
-            'message' => __('Failed to send message. Please try again.', 'alpacode-blocks'),
+            'message' => __('Failed to send message. Please try again.', 'alpacode'),
         ], 500);
     }
 

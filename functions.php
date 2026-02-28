@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
 }
 
 define('AC_VERSION', '1.0.0');
-define('AC_PATH', get_theme_file_path());
-define('AC_URI', get_theme_file_uri());
+define('AC_PATH', get_stylesheet_directory());
+define('AC_URI', get_stylesheet_directory_uri());
 
 /**
  * Theme setup.
@@ -38,7 +38,7 @@ add_filter('block_categories_all', function ($categories) {
  * Register all blocks by scanning blocks/*/block.json.
  */
 add_action('init', function () {
-    $block_dirs = glob(AC_PATH . '/blocks/*/block.json');
+    $block_dirs = glob(AC_PATH . '/blocks/*/block.json') ?: [];
 
     foreach ($block_dirs as $block_json) {
         register_block_type(dirname($block_json));
@@ -130,7 +130,12 @@ add_action('enqueue_block_editor_assets', function () {
 
 /**
  * Load includes.
- * Note: class-ac-theme-json.php removed — tokens now live natively in theme.json.
+ * Guards prevent fatal errors if old plugin is still active (duplicate classes).
  */
-require_once AC_PATH . '/includes/class-ac-performance.php';
-require_once AC_PATH . '/includes/class-ac-contact-form.php';
+if (!class_exists('AC_Performance')) {
+    require_once AC_PATH . '/includes/class-ac-performance.php';
+}
+
+if (!class_exists('AC_Contact_Form')) {
+    require_once AC_PATH . '/includes/class-ac-contact-form.php';
+}

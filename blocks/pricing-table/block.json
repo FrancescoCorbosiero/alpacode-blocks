@@ -8,7 +8,7 @@
     "icon": "money-alt",
     "description": "Pricing comparison columns with feature lists. Hairline-bordered, zero-radius layout.",
     "keywords": ["pricing", "plans", "table", "comparison", "cost"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": { "type": "string", "default": "" },
         "title": { "type": "string", "default": "" },

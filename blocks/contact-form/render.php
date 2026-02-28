@@ -45,7 +45,7 @@ $block_id = 'ac-' . wp_unique_id();
 
             <div class="ac-contact-form__field">
                 <label for="<?php echo esc_attr($block_id); ?>-name" class="ac-contact-form__label">
-                    <?php esc_html_e('Name', 'alpacode-blocks'); ?>
+                    <?php esc_html_e('Name', 'alpacode'); ?>
                 </label>
                 <input type="text"
                     id="<?php echo esc_attr($block_id); ?>-name"
@@ -58,7 +58,7 @@ $block_id = 'ac-' . wp_unique_id();
 
             <div class="ac-contact-form__field">
                 <label for="<?php echo esc_attr($block_id); ?>-email" class="ac-contact-form__label">
-                    <?php esc_html_e('Email', 'alpacode-blocks'); ?>
+                    <?php esc_html_e('Email', 'alpacode'); ?>
                 </label>
                 <input type="email"
                     id="<?php echo esc_attr($block_id); ?>-email"
@@ -83,7 +83,7 @@ $block_id = 'ac-' . wp_unique_id();
 
             <div class="ac-contact-form__field ac-contact-form__field--full">
                 <label for="<?php echo esc_attr($block_id); ?>-message" class="ac-contact-form__label">
-                    <?php esc_html_e('Message', 'alpacode-blocks'); ?>
+                    <?php esc_html_e('Message', 'alpacode'); ?>
                 </label>
                 <textarea
                     id="<?php echo esc_attr($block_id); ?>-message"

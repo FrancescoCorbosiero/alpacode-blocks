@@ -8,7 +8,7 @@
     "icon": "chart-bar",
     "description": "Oversized monospace counter values with labels. Hairline-divided grid layout.",
     "keywords": ["stats", "counter", "numbers", "metrics"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "items": {
             "type": "array",

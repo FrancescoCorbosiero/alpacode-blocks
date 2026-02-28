@@ -8,7 +8,7 @@
     "icon": "megaphone",
     "description": "Call-to-action banner with title, description, and button. Light and dark variants.",
     "keywords": ["cta", "call to action", "banner", "button"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

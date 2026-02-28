@@ -8,7 +8,7 @@
     "icon": "table-row-after",
     "description": "Tabbed content panels with hairline indicators. Monospace tab labels.",
     "keywords": ["tabs", "panel", "toggle", "content", "switch"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "items": { "type": "array", "default": [], "items": { "type": "object" } }
     },

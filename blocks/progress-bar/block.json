@@ -8,7 +8,7 @@
     "icon": "minus",
     "description": "Animated horizontal progress bar with label and percentage.",
     "keywords": ["progress", "bar", "skill", "percentage"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "items": {
             "type": "array",
