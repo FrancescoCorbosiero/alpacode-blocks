@@ -8,7 +8,7 @@
     "icon": "format-gallery",
     "description": "Image gallery grid with titles and categories. Hover reveals caption overlay.",
     "keywords": ["portfolio", "gallery", "work", "projects", "images"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": { "type": "string", "default": "" },
         "title": { "type": "string", "default": "" },

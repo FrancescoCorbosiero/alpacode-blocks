@@ -8,7 +8,7 @@
     "icon": "email",
     "description": "AJAX contact form with validation, honeypot, and REST API submission.",
     "keywords": ["contact", "form", "email", "message"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

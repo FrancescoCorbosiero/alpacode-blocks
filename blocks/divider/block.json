@@ -8,7 +8,7 @@
     "icon": "minus",
     "description": "A hairline divider with optional spacing and animation. Architectural accent element.",
     "keywords": ["divider", "separator", "line", "hairline"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "variant": {
             "type": "string",

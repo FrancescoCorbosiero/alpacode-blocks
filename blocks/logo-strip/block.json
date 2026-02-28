@@ -8,7 +8,7 @@
     "icon": "images-alt2",
     "description": "Row of client or partner logos. Grayscale with hover color reveal.",
     "keywords": ["logos", "clients", "partners", "brands", "strip"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

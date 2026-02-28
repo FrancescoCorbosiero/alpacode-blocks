@@ -8,7 +8,7 @@
     "icon": "list-view",
     "description": "Expandable FAQ items with hairline dividers. Minimal plus/minus toggle icon.",
     "keywords": ["faq", "accordion", "questions", "toggle", "expand"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

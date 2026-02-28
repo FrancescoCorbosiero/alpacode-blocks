@@ -8,7 +8,7 @@
     "icon": "columns",
     "description": "Multi-column feature list with icons or numbers. Hairline-divided grid layout.",
     "keywords": ["features", "columns", "benefits", "list"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

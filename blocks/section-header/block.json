@@ -8,7 +8,7 @@
     "icon": "heading",
     "description": "Eyebrow, title, and subtitle stack for introducing content sections.",
     "keywords": ["heading", "section", "title", "eyebrow"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

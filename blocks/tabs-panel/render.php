@@ -15,7 +15,7 @@ $block_id = 'ac-' . wp_unique_id();
     data-wp-context='<?php echo wp_json_encode(['activeTab' => 0, 'totalTabs' => count($items)]); ?>'>
 
     <div class="ac-tabs-panel__container">
-        <div class="ac-tabs-panel__tabs" role="tablist" aria-label="<?php esc_attr_e('Content tabs', 'alpacode-blocks'); ?>">
+        <div class="ac-tabs-panel__tabs" role="tablist" aria-label="<?php esc_attr_e('Content tabs', 'alpacode'); ?>">
             <?php foreach ($items as $index => $item) :
                 $label = $item['label'] ?? 'Tab ' . ($index + 1);
             ?>

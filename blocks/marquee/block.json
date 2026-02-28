@@ -8,7 +8,7 @@
     "icon": "controls-play",
     "description": "Infinite scrolling text strip. Monospace or display type, configurable speed and direction.",
     "keywords": ["marquee", "ticker", "scroll", "text", "infinite"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "text": { "type": "string", "default": "" },
         "separator": { "type": "string", "default": "—" },

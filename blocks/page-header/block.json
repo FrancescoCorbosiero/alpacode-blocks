@@ -8,7 +8,7 @@
     "icon": "welcome-widgets-menus",
     "description": "Top-of-page header with eyebrow, title, and optional description. Dark background.",
     "keywords": ["page", "header", "title", "hero"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

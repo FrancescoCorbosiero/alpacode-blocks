@@ -8,7 +8,7 @@
     "icon": "grid-view",
     "description": "Hairline-bordered grid of service items. Typography-driven cards with no shadows or backgrounds.",
     "keywords": ["services", "grid", "cards", "features"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

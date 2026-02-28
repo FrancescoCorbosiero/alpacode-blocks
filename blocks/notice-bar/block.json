@@ -8,7 +8,7 @@
     "icon": "megaphone",
     "description": "Dismissible top banner for announcements and alerts.",
     "keywords": ["notice", "bar", "banner", "alert", "announcement"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "text": { "type": "string", "default": "" },
         "linkText": { "type": "string", "default": "" },

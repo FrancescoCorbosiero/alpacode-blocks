@@ -8,7 +8,7 @@
     "icon": "arrow-up-alt",
     "description": "Fixed scroll-to-top button that appears after scrolling.",
     "keywords": ["back", "top", "scroll", "button"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "threshold": { "type": "number", "default": 400 },
         "position": { "type": "string", "default": "right" }

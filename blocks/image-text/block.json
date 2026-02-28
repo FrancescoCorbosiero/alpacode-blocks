@@ -8,7 +8,7 @@
     "icon": "align-pull-left",
     "description": "Side-by-side image and text block with asymmetric layout. Responsive stacking.",
     "keywords": ["image", "text", "media", "content", "split"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": {
             "type": "string",

@@ -8,7 +8,7 @@
     "icon": "video-alt3",
     "description": "Full-height hero with looping video background, dark overlay, and content.",
     "keywords": ["video", "hero", "background", "banner", "media"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {
         "eyebrow": { "type": "string", "default": "" },
         "title": { "type": "string", "default": "" },
