@@ -71,7 +71,11 @@ alpacode/
 │   ├── header.html                   # Site header (title + navigation)
 │   └── footer.html                   # Site footer
 ├── patterns/                         # Block patterns (predefined layouts)
-│   └── homepage.php                  # Full homepage layout pattern
+│   ├── homepage.php                  # Full homepage layout pattern
+│   ├── contact.php                   # Contact page pattern
+│   ├── about.php                     # About page pattern
+│   ├── services.php                  # Services page pattern
+│   └── not-found.php                 # 404 content pattern
 ├── snippets.html                     # Copy-paste reference for WP code editor
 ├── demo.html                         # Standalone vanilla HTML/CSS showcase of all blocks (no WP required)
 ├── CLAUDE.md                         # This file — scaffold contract
@@ -415,9 +419,15 @@ All templates use `<!-- wp:template-part -->` for header/footer and core WordPre
 
 ### Block Patterns
 
+All patterns use `Post Types: page` — they appear in Gutenberg's "Choose a pattern" modal when creating a new page. Every block is pre-configured with realistic placeholder content.
+
 | Pattern | File | Description |
 |---|---|---|
 | Homepage | `homepage.php` | Full homepage: hero → logos → marquee → services → stats → image-text → features → testimonials → FAQ → CTA → contact |
+| Contact | `contact.php` | Contact page: page-header → info columns → divider → contact-form → FAQ |
+| About | `about.php` | About page: page-header → story (image-text) → stats → team-grid → timeline → values → CTA |
+| Services | `services.php` | Services page: page-header → services-grid → process (features) → approach (image-text) → testimonials → stats → CTA |
+| 404 Content | `not-found.php` | Not found: page-header (error message) → CTA (back to homepage) |
 
 ---
 
