@@ -1,0 +1,392 @@
+# CLAUDE.md — Alpacode Blocks
+
+> Primary context file for LLM-assisted development.
+> Scaffold contract for a plugin-first WordPress block design system.
+> Read this file AND `CONTEXT.md` before generating any code.
+
+---
+
+## 1. Architecture
+
+This is a **plugin-first design system** for WordPress Gutenberg. The plugin is the product; the theme is a shell. All visual structure, components, interactivity, and animation patterns live in the plugin. Colors, fonts, and spacing are opinionated defaults that users override via `theme.json` or the Site Editor.
+
+### Core Principles
+
+- **Zero external JS dependencies.** No npm runtime packages on the frontend. Vanilla JS only.
+- **No build step.** Editor JS uses raw `wp.element.createElement`. No JSX, no transpiler, no bundler.
+- **Dynamic blocks only.** Every block uses server-side render (`render.php`). `save()` always returns `null`.
+- **Plugin portable.** CSS namespaced `ac-*`, blocks namespaced `alpacode/`, JS IIFE-scoped. Works on any theme.
+- **Theme-aware.** Design tokens flow from `theme.json` presets with plugin defaults as fallbacks. Users customize appearance through standard WordPress UI without touching code.
+- **Accessibility-first.** `prefers-reduced-motion` everywhere. ARIA on all interactives. Focus-visible outlines. European Accessibility Act compliant.
+- **Performance-first.** Per-block CSS/JS loading, speculation rules, `content-visibility`, responsive images via `wp_get_attachment_image()`, `fetchpriority` on LCP, deferred scripts.
+
+### Requirements
+
+- WordPress 6.5+
+- PHP 8.0+
+- Block API v3
+
+---
+
+## 2. File System Structure
+
+```
+alpacode-blocks/
+├── alpacode-blocks.php               # Main plugin file — global assets, block registration, category
+├── includes/
+│   ├── class-ac-contact-form.php     # REST API form handler
+│   ├── class-ac-performance.php      # Speculation rules, resource hints, LCP priority
+│   └── class-ac-theme-json.php       # Design token → WordPress editor settings bridge
+├── assets/
+│   ├── css/
+│   │   ├── tokens.css                # Design tokens (:root custom properties with WP preset fallbacks)
+│   │   ├── base.css                  # Reset, button system, global utilities
+│   │   └── animations.css            # Scroll reveal, text reveal, image reveal, parallax, stagger
+│   ├── js/
+│   │   └── animations.js             # Global animation modules (IntersectionObserver-based)
+│   └── fonts/                        # Self-hosted WOFF2 fonts
+├── blocks/
+│   └── {block-slug}/                 # One folder per block
+│       ├── block.json
+│       ├── editor.js
+│       ├── render.php
+│       ├── style.css                 # Loaded only when block is on page
+│       ├── editor.css                # Editor-only (optional)
+│       └── view.js                   # Interactivity API — interactive widgets only (optional)
+├── snippets.html                     # Copy-paste reference for WP code editor
+├── CLAUDE.md                         # This file — scaffold contract
+└── CONTEXT.md                        # Style definition — design tokens, aesthetic rules, block inventory
+```
+
+### Naming Conventions
+
+| Scope | Pattern | Example |
+|---|---|---|
+| Block names | `alpacode/{block-slug}` | `alpacode/hero-banner` |
+| CSS classes | `ac-{block}__element` | `ac-hero-banner__title` |
+| CSS tokens | `--ac-{category}-{name}` | `--ac-color-primary` |
+| Data attributes | `data-ac-{feature}` | `data-ac-reveal="up"` |
+| PHP classes | `AC_{PascalCase}` | `AC_Contact_Form` |
+| PHP functions | `ac_{snake_case}` | `ac_blocks_register` |
+| JS globals | `AlpacodeBlocks` | `window.AlpacodeBlocks` |
+| Editor CSS | `ac-editor-{element}` | `ac-editor-placeholder` |
+
+---
+
+## 3. Block Scaffold — Canonical Pattern
+
+Every block follows this exact structure.
+
+### 3.1 block.json
+
+```json
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/{block-slug}",
+    "version": "1.0.0",
+    "title": "Block Title",
+    "category": "alpacode",
+    "icon": "dashicon-name",
+    "description": "What this block does.",
+    "keywords": ["keyword1", "keyword2"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {},
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {}
+    }
+}
+```
+
+**Rules:**
+
+- `apiVersion` always `3`.
+- `style` = per-block CSS, loaded only when block is present. Never put block CSS in global files.
+- `viewScriptModule` = per-block frontend JS. Only for interactive widgets. Omit entirely for static blocks — do not include the field if no view.js exists.
+- `example` = realistic sample data for inserter preview. Always include.
+- `supports.color` and `supports.spacing` enable per-block overrides through WordPress UI — essential for theme-awareness.
+- Images: store `imageId` (type `number`) as primary attribute. Keep `imageUrl` (type `string`) for editor preview. Resolve to responsive markup in render.php.
+
+### 3.2 editor.js
+
+```js
+(function(wp) {
+    var registerBlockType = wp.blocks.registerBlockType;
+    var el = wp.element.createElement;
+    var Fragment = wp.element.Fragment;
+    var InspectorControls = wp.blockEditor.InspectorControls;
+    var MediaUpload = wp.blockEditor.MediaUpload;
+    var MediaUploadCheck = wp.blockEditor.MediaUploadCheck;
+    var PanelBody = wp.components.PanelBody;
+    var TextControl = wp.components.TextControl;
+    var SelectControl = wp.components.SelectControl;
+    var RangeControl = wp.components.RangeControl;
+    var ToggleControl = wp.components.ToggleControl;
+    var Button = wp.components.Button;
+
+    registerBlockType('alpacode/{block-slug}', {
+        edit: function(props) {
+            var attributes = props.attributes;
+            var setAttributes = props.setAttributes;
+
+            return el(Fragment, null,
+
+                // ── Sidebar controls ──
+                el(InspectorControls, null,
+                    el(PanelBody, { title: 'Settings', initialOpen: true },
+                        // Controls here
+                    )
+                ),
+
+                // ── Canvas placeholder ──
+                el('div', { className: 'ac-editor-placeholder' },
+                    el('div', { className: 'ac-editor-placeholder__icon' },
+                        el('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: '1' },
+                            el('path', { d: 'SVG_PATH' })
+                        )
+                    ),
+                    el('div', { className: 'ac-editor-placeholder__title' }, 'Block Name'),
+                    el('div', { className: 'ac-editor-placeholder__text' },
+                        'Configuration status'
+                    )
+                )
+            );
+        },
+
+        save: function() { return null; }
+    });
+})(window.wp);
+```
+
+**Rules:**
+
+- IIFE-wrapped with `window.wp`.
+- `var` not `const/let` (no transpiler).
+- `save()` always returns `null`.
+- Canvas: minimal dark placeholder with block name + status. Content editing in sidebar.
+- Image attributes: store both `media.id` and `media.url` via `onSelect`.
+- Array attributes: provide `updateItem()`, `removeItem()`, `addItem()`, `moveItem()`.
+- Placeholder SVG icons: `stroke` not `fill`, `strokeWidth: '1'` — thin, geometric.
+
+### 3.3 render.php
+
+```php
+<?php
+/**
+ * {Block Name} — Server-side render
+ */
+
+$variant   = $attributes['variant'] ?? 'default';
+$title     = $attributes['title'] ?? '';
+$image_id  = $attributes['imageId'] ?? 0;
+
+if (empty($title)) {
+    return;
+}
+
+$block_id = 'ac-' . wp_unique_id();
+$variant_class = $variant !== 'default' ? ' ac-block-name--' . esc_attr($variant) : '';
+?>
+<section class="ac-block ac-block-name<?php echo $variant_class; ?>"
+    id="<?php echo esc_attr($block_id); ?>"
+    data-ac-reveal="up">
+
+    <div class="ac-block-name__container">
+        <?php if (!empty($title)) : ?>
+            <h2 class="ac-block-name__title"><?php echo esc_html($title); ?></h2>
+        <?php endif; ?>
+
+        <?php if ($image_id) : ?>
+            <div class="ac-block-name__image" data-ac-image-reveal="left">
+                <?php echo wp_get_attachment_image($image_id, 'large', false, [
+                    'class'   => 'ac-block-name__img',
+                    'loading' => 'lazy',
+                    'sizes'   => '(max-width: 768px) 100vw, 50vw',
+                ]); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+```
+
+**Rules:**
+
+- All output escaped: `esc_html()`, `esc_url()`, `esc_attr()`, `wp_kses_post()` for rich HTML.
+- Always `wp_get_attachment_image()` — never raw `<img src>`.
+- LCP image: `'loading' => 'eager'`, `'fetchpriority' => 'high'`, class includes `ac-lcp`.
+- All others: `'loading' => 'lazy'`.
+- Root: `class="ac-block ac-{BLOCK-NAME}"`.
+- `wp_unique_id()` for instance IDs.
+- Animation attributes in markup — global JS handles initialization.
+- Interactivity API: `data-wp-interactive="alpacode/{block-slug}"` on root.
+
+### 3.4 style.css (per-block)
+
+```css
+/**
+ * alpacode/{block-slug} — Frontend Styles
+ */
+
+.ac-block-name {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-block-name--dark {
+    background: var(--ac-color-primary);
+    color: var(--ac-color-surface);
+}
+
+.ac-block-name__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+@media (max-width: 768px) { }
+@media (max-width: 480px) { }
+```
+
+**Rules:**
+
+- Only THIS block's styles. No tokens, no reset, no buttons, no animations.
+- Design tokens only — never hardcode values.
+- BEM-like: `.ac-{BLOCK}__element`.
+- Below-fold: `content-visibility: auto; contain-intrinsic-size: auto 600px;`.
+- Follow CONTEXT.md §3 aesthetic rules (radius, dividers, whitespace, motion).
+
+### 3.5 view.js (Interactivity API)
+
+```js
+import { store, getContext } from '@wordpress/interactivity';
+
+store('alpacode/{block-slug}', {
+    state: {},
+    actions: {
+        actionName() {
+            const ctx = getContext();
+        }
+    },
+    callbacks: {}
+});
+```
+
+**Use for:** carousels, accordions, forms, tabs, modals.
+**Don't use for:** scroll animations, parallax, counters, magnetic hover — global `animations.js`.
+
+---
+
+## 4. Animation Data Attributes
+
+Global `animations.js` handles these via IntersectionObserver.
+
+| Attribute | Values | Effect |
+|---|---|---|
+| `data-ac-reveal` | `up`, `left`, `right`, `fade` | Scroll-triggered reveal |
+| `data-ac-reveal-delay` | ms integer | Stagger delay |
+| `data-ac-text-reveal` | `chars`, `words`, `lines` | Split-text animation |
+| `data-ac-image-reveal` | `left`, `right`, `up`, `down` | Clip-path wipe reveal |
+| `data-ac-parallax` | float (`0.3`, `-0.2`) | Scroll parallax |
+| `data-ac-magnetic` | (presence) | Cursor-following magnetic |
+| `data-ac-stagger` | (presence, on parent) | Auto-stagger children |
+| `data-ac-stagger-delay` | ms integer (default `100`) | Stagger interval |
+| `data-ac-counter` | integer target | Count-up |
+| `data-ac-line` | (presence) | Hairline draw-on |
+
+Motion personality (easing, durations, restraint) defined in CONTEXT.md §3.3.
+
+---
+
+## 5. Performance
+
+### 5.1 Speculation Rules
+
+Generic moderate/conservative rules in `class-ac-performance.php`. Eager prerender targets are domain-specific — configurable via filter:
+
+```php
+$eager_urls = apply_filters('ac_speculation_eager_urls', []);
+```
+
+### 5.2 Scripts: `'strategy' => 'defer'` on all frontend scripts.
+
+### 5.3 Images: `imageId` → `wp_get_attachment_image()` → `srcset` + `sizes` + `fetchpriority`.
+
+### 5.4 CSS: `content-visibility: auto` on below-fold sections.
+
+### 5.5 Fonts: Self-hosted WOFF2. `font-display: swap`. No CDN.
+
+---
+
+## 6. theme.json Integration
+
+Plugin injects tokens via `wp_theme_json_data_default` filter in `class-ac-theme-json.php`:
+
+- `settings.color.palette` — project colors, `defaultPalette: false`
+- `settings.typography.fontFamilies` — with fallback stacks
+- `settings.typography.fontSizes` — fluid `clamp()` scale
+- `settings.spacing.spacingSizes` — matching token scale
+- `settings.layout.contentSize` / `wideSize`
+
+CSS bridge in `tokens.css`: `--ac-*: var(--wp--preset--*--ac-*, FALLBACK);`
+
+Themes override any token via their own `theme.json`. Overrides cascade automatically.
+
+---
+
+## 7. Contact Form (REST API)
+
+- Endpoint: `alpacode/v1/contact`
+- Rate limiting: transient, 5/IP/hour
+- Honeypot + server validation
+- `wp_mail()` delivery
+- Frontend: `fetch()` to REST, not `admin-ajax.php`
+
+---
+
+## 8. Accessibility (per block)
+
+- [ ] `:focus-visible` outlines
+- [ ] Images: `alt` text or `alt=""`
+- [ ] Carousels: `aria-roledescription`, `aria-label`, `aria-live="polite"`
+- [ ] Accordions: `aria-expanded`, `aria-controls`
+- [ ] Dots: `role="tablist"` / `role="tab"`, `aria-current`
+- [ ] Icon buttons: `aria-label`
+- [ ] `prefers-reduced-motion: reduce` disables everything
+- [ ] Form: `<label>`, `aria-describedby` on errors
+- [ ] WCAG AA contrast
+
+---
+
+## 9. New Block Checklist
+
+1. `blocks/{block-slug}/` folder
+2. `block.json` — `example`, `supports.color`, `supports.spacing`
+3. `editor.js` — sidebar controls, placeholder
+4. `render.php` — `wp_get_attachment_image()`, escaping, animation attrs
+5. `style.css` — tokens only, responsive, `content-visibility`
+6. Interactive? → `view.js` (Interactivity API)
+7. Update `snippets.html`
+8. Auto-registers via `blocks/*/block.json` scan
+
+---
+
+## 10. Context
+
+Style definition (tokens, aesthetic rules, motion, block inventory) lives in **CONTEXT.md**. This file is the scaffold contract. Both required.
