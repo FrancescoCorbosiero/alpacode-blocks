@@ -1,0 +1,101 @@
+/**
+ * alpacode/image-text — Frontend Styles
+ */
+
+.ac-image-text {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-image-text--dark {
+    background: var(--ac-color-primary);
+    color: var(--ac-color-text-on-dark);
+}
+
+.ac-image-text__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ac-space-3xl);
+    align-items: center;
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+/* Image right: swap order */
+.ac-image-text--image-right .ac-image-text__media {
+    order: 2;
+}
+
+.ac-image-text--image-right .ac-image-text__content {
+    order: 1;
+}
+
+/* ── Media ── */
+
+.ac-image-text__media {
+    overflow: hidden;
+}
+
+.ac-image-text__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ── Content ── */
+
+.ac-image-text__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-image-text--dark .ac-image-text__eyebrow {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-image-text__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ac-image-text__desc {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    line-height: 1.65;
+    margin-top: var(--ac-space-md);
+}
+
+.ac-image-text--dark .ac-image-text__desc {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-image-text__cta {
+    margin-top: var(--ac-space-2xl);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .ac-image-text__container {
+        grid-template-columns: 1fr;
+        gap: var(--ac-space-2xl);
+    }
+
+    .ac-image-text--image-right .ac-image-text__media,
+    .ac-image-text--image-right .ac-image-text__content {
+        order: unset;
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-image-text {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
