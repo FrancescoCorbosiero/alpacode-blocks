@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/contact-form",
+    "version": "1.0.0",
+    "title": "Contact Form",
+    "category": "alpacode",
+    "icon": "email",
+    "description": "AJAX contact form with validation, honeypot, and REST API submission.",
+    "keywords": ["contact", "form", "email", "message"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "subtitle": {
+            "type": "string",
+            "default": ""
+        },
+        "submitText": {
+            "type": "string",
+            "default": "Send Message"
+        },
+        "successMessage": {
+            "type": "string",
+            "default": "Thank you. Your message has been sent."
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "eyebrow": "Contact",
+            "title": "Get in touch",
+            "subtitle": "We'd love to hear from you. Send us a message and we'll respond promptly.",
+            "submitText": "Send Message"
+        }
+    }
+}

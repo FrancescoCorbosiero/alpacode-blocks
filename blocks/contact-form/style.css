@@ -1,0 +1,158 @@
+/**
+ * alpacode/contact-form — Frontend Styles
+ */
+
+.ac-contact-form {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-contact-form__container {
+    max-width: var(--ac-max-width-narrow);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+/* ── Header ── */
+
+.ac-contact-form__header {
+    margin-bottom: var(--ac-space-3xl);
+}
+
+.ac-contact-form__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-contact-form__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ac-contact-form__subtitle {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    margin-top: var(--ac-space-sm);
+}
+
+/* ── Form ── */
+
+.ac-contact-form__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ac-space-lg);
+}
+
+.ac-contact-form__field--full {
+    grid-column: 1 / -1;
+}
+
+.ac-contact-form__label {
+    display: block;
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ac-color-text-muted);
+    margin-bottom: var(--ac-space-sm);
+}
+
+.ac-contact-form__input,
+.ac-contact-form__textarea {
+    width: 100%;
+    padding: var(--ac-space-md);
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text);
+    background: var(--ac-color-surface);
+    border: 1px solid var(--ac-color-border);
+    border-radius: 0;
+    transition: border-color 300ms var(--ac-ease-out);
+}
+
+.ac-contact-form__input:focus,
+.ac-contact-form__textarea:focus {
+    outline: none;
+    border-color: var(--ac-color-accent);
+}
+
+.ac-contact-form__input:focus-visible,
+.ac-contact-form__textarea:focus-visible {
+    outline: 1px solid var(--ac-color-accent);
+    outline-offset: -1px;
+}
+
+.ac-contact-form__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ── Honeypot ── */
+
+.ac-contact-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/* ── Footer ── */
+
+.ac-contact-form__footer {
+    grid-column: 1 / -1;
+}
+
+.ac-contact-form__footer .ac-btn {
+    min-width: 160px;
+}
+
+.ac-contact-form__footer .ac-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Status ── */
+
+.ac-contact-form__status {
+    grid-column: 1 / -1;
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-sm);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity 300ms var(--ac-ease-out);
+}
+
+.ac-contact-form__status--visible {
+    opacity: 1;
+}
+
+.ac-contact-form__status--success {
+    color: var(--ac-color-success);
+}
+
+.ac-contact-form__status--error {
+    color: var(--ac-color-error);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .ac-contact-form__form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-contact-form {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
