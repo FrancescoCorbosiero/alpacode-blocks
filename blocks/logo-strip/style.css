@@ -1,0 +1,92 @@
+/**
+ * alpacode/logo-strip — Frontend Styles
+ */
+
+.ac-logo-strip {
+    padding: var(--ac-space-3xl) 0;
+    background: var(--ac-color-surface);
+    border-top: 1px solid var(--ac-color-border);
+    border-bottom: 1px solid var(--ac-color-border);
+}
+
+.ac-logo-strip--dark {
+    background: var(--ac-color-primary);
+    border-color: var(--ac-color-primary-light);
+}
+
+.ac-logo-strip__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-logo-strip__eyebrow {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--ac-space-2xl);
+}
+
+.ac-logo-strip--dark .ac-logo-strip__eyebrow {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+/* ── Grid ── */
+
+.ac-logo-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ac-logo-columns, 5), 1fr);
+    gap: var(--ac-space-xl);
+    align-items: center;
+}
+
+.ac-logo-strip__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ac-space-md);
+}
+
+.ac-logo-strip__img {
+    max-height: 40px;
+    width: auto;
+    filter: grayscale(1);
+    opacity: 0.5;
+    transition: filter 300ms var(--ac-ease-out),
+                opacity 300ms var(--ac-ease-out);
+}
+
+.ac-logo-strip__item:hover .ac-logo-strip__img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+.ac-logo-strip--dark .ac-logo-strip__img {
+    filter: grayscale(1) brightness(2);
+    opacity: 0.4;
+}
+
+.ac-logo-strip--dark .ac-logo-strip__item:hover .ac-logo-strip__img {
+    filter: grayscale(0) brightness(1.5);
+    opacity: 0.9;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .ac-logo-strip__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .ac-logo-strip__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-logo-strip {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 200px;
+}

@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/logo-strip",
+    "version": "1.0.0",
+    "title": "Logo Strip",
+    "category": "alpacode",
+    "icon": "images-alt2",
+    "description": "Row of client or partner logos. Grayscale with hover color reveal.",
+    "keywords": ["logos", "clients", "partners", "brands", "strip"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        },
+        "variant": {
+            "type": "string",
+            "default": "light"
+        },
+        "columns": {
+            "type": "number",
+            "default": 5
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": false
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Trusted by 500+ companies",
+            "columns": 5,
+            "items": []
+        }
+    }
+}
