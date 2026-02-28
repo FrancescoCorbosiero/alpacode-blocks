@@ -52,6 +52,7 @@ alpacode/
 │   └── {block-slug}/                 # One folder per block
 │       ├── block.json
 │       ├── editor.js
+│       ├── editor.asset.php          # Dependencies for editor.js (wp-blocks, wp-element, etc.)
 │       ├── render.php
 │       ├── style.css                 # Loaded only when block is on page
 │       ├── editor.css                # Editor-only (optional)
@@ -144,7 +145,18 @@ Every block follows this exact structure.
 - `supports.color` and `supports.spacing` enable per-block overrides through WordPress UI — essential for theme-awareness.
 - Images: store `imageId` (type `number`) as primary attribute. Keep `imageUrl` (type `string`) for editor preview. Resolve to responsive markup in render.php.
 
-### 3.2 editor.js
+### 3.2 editor.asset.php
+
+```php
+<?php return array(
+    'dependencies' => array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components'),
+    'version'      => '1.0.0',
+);
+```
+
+**Required for every block.** Without this file, WordPress doesn't know that `editor.js` depends on `wp-blocks`, `wp-element`, etc. — the script loads before those packages and fails silently. The blocks won't appear in the inserter.
+
+### 3.3 editor.js
 
 ```js
 (function(wp) {
@@ -205,7 +217,7 @@ Every block follows this exact structure.
 - Array attributes: provide `updateItem()`, `removeItem()`, `addItem()`, `moveItem()`.
 - Placeholder SVG icons: `stroke` not `fill`, `strokeWidth: '1'` — thin, geometric.
 
-### 3.3 render.php
+### 3.4 render.php
 
 ```php
 <?php
@@ -257,7 +269,7 @@ $variant_class = $variant !== 'default' ? ' ac-block-name--' . esc_attr($variant
 - Animation attributes in markup — global JS handles initialization.
 - Interactivity API: `data-wp-interactive="alpacode/{block-slug}"` on root.
 
-### 3.4 style.css (per-block)
+### 3.5 style.css (per-block)
 
 ```css
 /**
@@ -292,7 +304,7 @@ $variant_class = $variant !== 'default' ? ' ac-block-name--' . esc_attr($variant
 - Below-fold: `content-visibility: auto; contain-intrinsic-size: auto 600px;`.
 - Follow CONTEXT.md §3 aesthetic rules (radius, dividers, whitespace, motion).
 
-### 3.5 view.js (Interactivity API)
+### 3.6 view.js (Interactivity API)
 
 ```js
 import { store, getContext } from '@wordpress/interactivity';
@@ -437,13 +449,14 @@ All templates use `<!-- wp:template-part -->` for header/footer and core WordPre
 
 1. `blocks/{block-slug}/` folder
 2. `block.json` — `example`, `supports.color`, `supports.spacing`, `textdomain: "alpacode"`
-3. `editor.js` — sidebar controls, placeholder
-4. `render.php` — `wp_get_attachment_image()`, escaping, animation attrs
-5. `style.css` — tokens only, responsive, `content-visibility`
-6. Interactive? → `view.js` (Interactivity API)
-7. Update `snippets.html`
-8. Update `demo.html` — add new block's section
-9. Auto-registers via `blocks/*/block.json` scan in `functions.php`
+3. `editor.asset.php` — declares `wp-blocks`, `wp-element`, `wp-block-editor`, `wp-components` deps
+4. `editor.js` — sidebar controls, placeholder
+5. `render.php` — `wp_get_attachment_image()`, escaping, animation attrs
+6. `style.css` — tokens only, responsive, `content-visibility`
+7. Interactive? → `view.js` (Interactivity API)
+8. Update `snippets.html`
+9. Update `demo.html` — add new block's section
+10. Auto-registers via `blocks/*/block.json` scan in `functions.php`
 
 ---
 
