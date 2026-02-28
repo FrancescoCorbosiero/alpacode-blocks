@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpacode Blocks — Visual Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --ac-color-primary: #18181B;
+            --ac-color-primary-light: #27272A;
+            --ac-color-primary-dark: #09090B;
+            --ac-color-accent: #64748B;
+            --ac-color-accent-light: #7C8DA0;
+            --ac-color-accent-dark: #475569;
+            --ac-color-surface: #FAFAFA;
+            --ac-color-surface-alt: #F4F4F5;
+            --ac-color-border: #E4E4E7;
+            --ac-color-border-subtle: #F0F0F2;
+            --ac-color-text: #18181B;
+            --ac-color-text-muted: #71717A;
+            --ac-color-text-faint: #A1A1AA;
+            --ac-color-text-on-dark: #FAFAFA;
+            --ac-color-text-on-dark-muted: #A1A1AA;
+            --ac-color-success: #16A34A;
+            --ac-color-error: #DC2626;
+
+            --ac-font-display: 'DM Sans', 'Inter', system-ui, sans-serif;
+            --ac-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --ac-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+            --ac-text-xs: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
+            --ac-text-sm: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+            --ac-text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+            --ac-text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+            --ac-text-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+            --ac-text-2xl: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+            --ac-text-3xl: clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem);
+            --ac-text-4xl: clamp(2.25rem, 1.6rem + 2.2vw, 3.5rem);
+            --ac-text-5xl: clamp(2.75rem, 1.8rem + 3.5vw, 5rem);
+            --ac-text-counter: clamp(3.5rem, 2rem + 5vw, 7rem);
+
+            --ac-space-xs: 0.25rem;
+            --ac-space-sm: 0.5rem;
+            --ac-space-md: 1rem;
+            --ac-space-lg: 1.5rem;
+            --ac-space-xl: 2rem;
+            --ac-space-2xl: 3rem;
+            --ac-space-3xl: 4.5rem;
+            --ac-space-4xl: 6rem;
+            --ac-space-5xl: 9rem;
+            --ac-space-section: clamp(6rem, 4rem + 6vw, 11rem);
+
+            --ac-max-width: 1200px;
+            --ac-max-width-narrow: 680px;
+            --ac-max-width-wide: 1400px;
+
+            --ac-ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+            --ac-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+            --ac-ease-precise: cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        /* ── RESET ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        img, svg { display: block; max-width: 100%; height: auto; }
+        body {
+            font-family: var(--ac-font-body);
+            font-size: var(--ac-text-base);
+            font-weight: 400;
+            line-height: 1.65;
+            color: var(--ac-color-text);
+            background: var(--ac-color-surface);
+            -webkit-font-smoothing: antialiased;
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-family: var(--ac-font-display);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        /* ── BLOCK LABEL ── */
+        .demo-label {
+            font-family: var(--ac-font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ac-color-accent);
+            background: var(--ac-color-primary);
+            display: inline-block;
+            padding: 4px 12px;
+            position: relative;
+            z-index: 10;
+            margin-left: 2rem;
+        }
+        .demo-label--on-dark {
+            background: var(--ac-color-surface);
+            color: var(--ac-color-primary);
+        }
+
+        /* ── BUTTONS ── */
+        .ac-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--ac-space-sm);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--ac-font-mono);
+            font-size: var(--ac-text-xs);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background 300ms var(--ac-ease-out), color 300ms var(--ac-ease-out), border-color 300ms var(--ac-ease-out);
+        }
+        .ac-btn--primary { background: var(--ac-color-primary); border-color: var(--ac-color-primary); color: var(--ac-color-surface); }
+        .ac-btn--primary:hover { background: var(--ac-color-primary-light); border-color: var(--ac-color-primary-light); }
+        .ac-btn--outline { background: transparent; border-color: var(--ac-color-border); color: var(--ac-color-text); }
+        .ac-btn--outline:hover { background: var(--ac-color-primary); border-color: var(--ac-color-primary); color: var(--ac-color-surface); }
+        .ac-btn--ghost { background: transparent; border-color: transparent; color: var(--ac-color-text); }
+        .ac-btn--ghost:hover { color: var(--ac-color-accent); }
+        .ac-btn--on-dark { border-color: var(--ac-color-text-on-dark); color: var(--ac-color-text-on-dark); background: transparent; }
+        .ac-btn--on-dark:hover { background: var(--ac-color-text-on-dark); color: var(--ac-color-primary); }
+
+        /* ── EYEBROW ── */
+        .ac-eyebrow {
+            font-family: var(--ac-font-mono);
+            font-size: var(--ac-text-sm);
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ac-color-text-muted);
+        }
+
+        /* ── ANIMATIONS ── */
+        [data-ac-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 700ms var(--ac-ease-precise), transform 700ms var(--ac-ease-precise); }
+        [data-ac-reveal="fade"] { transform: none; }
+        [data-ac-reveal].ac-revealed { opacity: 1; transform: translate(0,0); }
+        [data-ac-line] { transform: scaleX(0); transform-origin: left; transition: transform 800ms var(--ac-ease-precise); }
+        [data-ac-line].ac-revealed { transform: scaleX(1); }
+        [data-ac-stagger] > * { opacity: 0; transform: translateY(14px); transition: opacity 700ms var(--ac-ease-precise), transform 700ms var(--ac-ease-precise); }
+        [data-ac-stagger].ac-revealed > * { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            [data-ac-reveal], [data-ac-stagger] > *, [data-ac-line] { opacity: 1 !important; transform: none !important; transition: none !important; }
+        }
+
+        /* ================================================================
+           BLOCKS
+           ================================================================ */
+
+        /* ── HERO BANNER ── */
+        .ac-hero-banner {
+            position: relative; min-height: 90vh; overflow: hidden; background: var(--ac-color-primary-dark);
+            display: flex; align-items: flex-end;
+        }
+        .ac-hero-banner__overlay { position: absolute; inset: 0; background: var(--ac-color-primary-dark); opacity: 0.75; }
+        .ac-hero-banner__bg {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--ac-color-primary-dark) 0%, var(--ac-color-primary-light) 100%);
+        }
+        .ac-hero-banner__content { position: relative; padding: 0 0 var(--ac-space-4xl); width: 100%; }
+        .ac-hero-banner__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-hero-banner__eyebrow { display: block; color: var(--ac-color-text-on-dark-muted); margin-bottom: var(--ac-space-md); }
+        .ac-hero-banner__title { font-size: var(--ac-text-5xl); color: var(--ac-color-text-on-dark); max-width: 800px; margin: 0; }
+        .ac-hero-banner__subtitle { font-size: var(--ac-text-lg); color: var(--ac-color-text-on-dark-muted); margin-top: var(--ac-space-md); max-width: 560px; line-height: 1.6; }
+        .ac-hero-banner__cta { margin-top: var(--ac-space-2xl); }
+        .ac-hero-banner__dots { position: absolute; bottom: var(--ac-space-xl); right: var(--ac-space-xl); display: flex; gap: var(--ac-space-sm); }
+        .ac-hero-banner__dot { width: 24px; height: 2px; background: var(--ac-color-text-on-dark-muted); border: none; border-radius: 0; opacity: 0.4; cursor: pointer; padding: 0; }
+        .ac-hero-banner__dot--active { opacity: 1; width: 40px; }
+
+        /* ── PAGE HEADER ── */
+        .ac-page-header { padding: var(--ac-space-section) 0 var(--ac-space-3xl); background: var(--ac-color-primary); color: var(--ac-color-text-on-dark); }
+        .ac-page-header__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-page-header__eyebrow { display: block; color: var(--ac-color-text-on-dark-muted); margin-bottom: var(--ac-space-md); }
+        .ac-page-header__title { font-size: var(--ac-text-4xl); margin: 0; max-width: 800px; }
+        .ac-page-header__desc { font-size: var(--ac-text-lg); color: var(--ac-color-text-on-dark-muted); margin-top: var(--ac-space-md); max-width: 600px; line-height: 1.6; }
+        .ac-page-header__border { max-width: var(--ac-max-width); margin: var(--ac-space-3xl) auto 0; height: 1px; background: var(--ac-color-primary-light); }
+
+        /* ── SECTION HEADER ── */
+        .ac-section-header { padding: var(--ac-space-3xl) 0 var(--ac-space-xl); }
+        .ac-section-header__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-section-header__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-section-header__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-section-header__subtitle { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); max-width: 600px; }
+
+        /* ── DIVIDER ── */
+        .ac-divider { padding: var(--ac-space-2xl) 0; }
+        .ac-divider__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-divider__line { border: none; border-top: 1px solid var(--ac-color-border); margin: 0; }
+
+        /* ── SERVICES GRID ── */
+        .ac-services-grid { padding: var(--ac-space-section) 0; background: var(--ac-color-surface); }
+        .ac-services-grid__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-services-grid__header-container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-services-grid__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-services-grid__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-services-grid__subtitle { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); max-width: 600px; }
+        .ac-services-grid__grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+            max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl);
+            border-top: 1px solid var(--ac-color-border); border-left: 1px solid var(--ac-color-border);
+        }
+        .ac-services-grid__item { padding: var(--ac-space-2xl); border-right: 1px solid var(--ac-color-border); border-bottom: 1px solid var(--ac-color-border); }
+        .ac-services-grid__number { display: block; font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); color: var(--ac-color-text-faint); letter-spacing: 0.12em; margin-bottom: var(--ac-space-lg); }
+        .ac-services-grid__item-title { font-size: var(--ac-text-xl); margin: 0 0 var(--ac-space-sm); transition: color 300ms var(--ac-ease-out); }
+        .ac-services-grid__item:hover .ac-services-grid__item-title { color: var(--ac-color-accent); }
+        .ac-services-grid__item-desc { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; margin: 0; }
+
+        /* ── STATS COUNTER ── */
+        .ac-stats-counter { padding: var(--ac-space-section) 0; background: var(--ac-color-surface-alt); }
+        .ac-stats-counter__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-stats-counter__item { text-align: center; padding: var(--ac-space-2xl) var(--ac-space-xl); border-right: 1px solid var(--ac-color-border); }
+        .ac-stats-counter__item:last-child { border-right: none; }
+        .ac-stats-counter__value { font-family: var(--ac-font-mono); font-size: var(--ac-text-counter); font-weight: 400; line-height: 1; color: var(--ac-color-accent); font-variant-numeric: tabular-nums; }
+        .ac-stats-counter__suffix { font-size: 0.4em; color: var(--ac-color-text-muted); vertical-align: super; }
+        .ac-stats-counter__label { display: block; font-size: var(--ac-text-sm); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); }
+
+        /* ── CTA BANNER ── */
+        .ac-cta-banner { padding: var(--ac-space-section) 0; }
+        .ac-cta-banner--dark { background: var(--ac-color-primary); color: var(--ac-color-text-on-dark); }
+        .ac-cta-banner__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-cta-banner__content { max-width: 680px; }
+        .ac-cta-banner__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-cta-banner--dark .ac-cta-banner__eyebrow { color: var(--ac-color-text-on-dark-muted); }
+        .ac-cta-banner__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-cta-banner__desc { font-size: var(--ac-text-lg); color: var(--ac-color-text-on-dark-muted); margin-top: var(--ac-space-md); line-height: 1.6; }
+        .ac-cta-banner__actions { display: flex; gap: var(--ac-space-md); align-items: center; margin-top: var(--ac-space-2xl); }
+
+        /* ── IMAGE TEXT ── */
+        .ac-image-text { padding: var(--ac-space-section) 0; background: var(--ac-color-surface); }
+        .ac-image-text__container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ac-space-3xl); align-items: center; max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-image-text__placeholder { background: var(--ac-color-surface-alt); border: 1px solid var(--ac-color-border); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
+        .ac-image-text__placeholder svg { width: 48px; height: 48px; color: var(--ac-color-text-faint); }
+        .ac-image-text__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-image-text__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-image-text__desc { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; margin-top: var(--ac-space-md); }
+        .ac-image-text__cta { margin-top: var(--ac-space-2xl); }
+
+        /* ── FAQ ACCORDION ── */
+        .ac-faq-accordion { padding: var(--ac-space-section) 0; background: var(--ac-color-surface); }
+        .ac-faq-accordion__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-faq-accordion__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-faq-accordion__header .ac-eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-faq-accordion__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-faq-accordion__list { max-width: var(--ac-max-width-narrow); border-top: 1px solid var(--ac-color-border); }
+        .ac-faq-accordion__item { border-bottom: 1px solid var(--ac-color-border); }
+        .ac-faq-accordion__trigger {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+            padding: var(--ac-space-lg) 0; background: none; border: none; cursor: pointer; text-align: left; gap: var(--ac-space-md);
+        }
+        .ac-faq-accordion__question { font-family: var(--ac-font-body); font-size: var(--ac-text-lg); font-weight: 500; color: var(--ac-color-text); }
+        .ac-faq-accordion__icon { flex-shrink: 0; width: 16px; height: 16px; color: var(--ac-color-text-muted); }
+        .ac-faq-accordion__icon svg { width: 100%; height: 100%; }
+        .ac-faq-accordion__icon-v { transition: transform 300ms var(--ac-ease-out), opacity 300ms var(--ac-ease-out); transform-origin: center; }
+        .ac-faq-accordion__item--open .ac-faq-accordion__icon-v { transform: rotate(90deg); opacity: 0; }
+        .ac-faq-accordion__panel { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ac-ease-out); }
+        .ac-faq-accordion__item--open .ac-faq-accordion__panel { max-height: 500px; }
+        .ac-faq-accordion__answer { padding-bottom: var(--ac-space-lg); }
+        .ac-faq-accordion__answer p { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; margin: 0; }
+
+        /* ── TESTIMONIALS ── */
+        .ac-testimonials-slider { padding: var(--ac-space-section) 0; background: var(--ac-color-surface-alt); }
+        .ac-testimonials-slider__container { max-width: var(--ac-max-width-narrow); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-testimonials-slider__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-testimonials-slider__header .ac-eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-testimonials-slider__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-testimonials-slider__track { position: relative; min-height: 200px; }
+        .ac-testimonials-slider__slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 600ms var(--ac-ease-in-out); margin: 0; padding: 0; border: none; }
+        .ac-testimonials-slider__slide--active { position: relative; opacity: 1; }
+        .ac-testimonials-slider__quote { font-family: var(--ac-font-display); font-size: var(--ac-text-2xl); font-weight: 400; line-height: 1.4; margin: 0 0 var(--ac-space-2xl); }
+        .ac-testimonials-slider__author { font-family: var(--ac-font-body); font-size: var(--ac-text-base); font-style: normal; font-weight: 500; display: block; }
+        .ac-testimonials-slider__role { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ac-color-text-muted); display: block; margin-top: var(--ac-space-xs); }
+        .ac-testimonials-slider__controls { display: flex; align-items: center; gap: var(--ac-space-lg); margin-top: var(--ac-space-2xl); padding-top: var(--ac-space-lg); border-top: 1px solid var(--ac-color-border); }
+        .ac-testimonials-slider__arrow { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--ac-color-border); border-radius: 0; cursor: pointer; padding: 0; color: var(--ac-color-text); transition: border-color 300ms var(--ac-ease-out); }
+        .ac-testimonials-slider__arrow:hover { border-color: var(--ac-color-text); }
+        .ac-testimonials-slider__arrow svg { width: 16px; height: 16px; }
+        .ac-testimonials-slider__dots { display: flex; gap: var(--ac-space-sm); flex: 1; justify-content: center; }
+        .ac-testimonials-slider__dot { width: 24px; height: 2px; background: var(--ac-color-border); border: none; border-radius: 0; cursor: pointer; padding: 0; transition: background 300ms var(--ac-ease-out), width 300ms var(--ac-ease-out); }
+        .ac-testimonials-slider__dot--active { background: var(--ac-color-text); width: 40px; }
+
+        /* ── CONTACT FORM ── */
+        .ac-contact-form { padding: var(--ac-space-section) 0; background: var(--ac-color-surface); }
+        .ac-contact-form__container { max-width: var(--ac-max-width-narrow); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-contact-form__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-contact-form__header .ac-eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-contact-form__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-contact-form__subtitle { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); }
+        .ac-contact-form__form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ac-space-lg); }
+        .ac-contact-form__field--full { grid-column: 1 / -1; }
+        .ac-contact-form__label { display: block; font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ac-color-text-muted); margin-bottom: var(--ac-space-sm); }
+        .ac-contact-form__input, .ac-contact-form__textarea {
+            width: 100%; padding: var(--ac-space-md); font-family: var(--ac-font-body); font-size: var(--ac-text-base);
+            color: var(--ac-color-text); background: var(--ac-color-surface); border: 1px solid var(--ac-color-border); border-radius: 0;
+            transition: border-color 300ms var(--ac-ease-out);
+        }
+        .ac-contact-form__input:focus, .ac-contact-form__textarea:focus { outline: none; border-color: var(--ac-color-accent); }
+        .ac-contact-form__textarea { resize: vertical; min-height: 120px; }
+        .ac-contact-form__footer { grid-column: 1 / -1; }
+
+        /* ── FEATURE COLUMNS ── */
+        .ac-feature-columns { padding: var(--ac-space-section) 0; }
+        .ac-feature-columns__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-feature-columns__header-container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-feature-columns__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+        .ac-feature-columns__title { font-size: var(--ac-text-3xl); margin: 0; }
+        .ac-feature-columns__subtitle { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); max-width: 600px; }
+        .ac-feature-columns__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-feature-columns__item { padding: var(--ac-space-2xl) var(--ac-space-xl) var(--ac-space-2xl) 0; border-top: 1px solid var(--ac-color-border); }
+        .ac-feature-columns__number { display: block; font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); color: var(--ac-color-text-faint); letter-spacing: 0.12em; margin-bottom: var(--ac-space-lg); }
+        .ac-feature-columns__item-title { font-size: var(--ac-text-xl); margin: 0 0 var(--ac-space-sm); transition: color 300ms var(--ac-ease-out); }
+        .ac-feature-columns__item:hover .ac-feature-columns__item-title { color: var(--ac-color-accent); }
+        .ac-feature-columns__item-desc { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; margin: 0; }
+
+        /* ── LOGO STRIP ── */
+        .ac-logo-strip { padding: var(--ac-space-3xl) 0; border-top: 1px solid var(--ac-color-border); border-bottom: 1px solid var(--ac-color-border); }
+        .ac-logo-strip__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-logo-strip__eyebrow { display: block; text-align: center; margin-bottom: var(--ac-space-2xl); }
+        .ac-logo-strip__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--ac-space-xl); align-items: center; }
+        .ac-logo-strip__item { display: flex; align-items: center; justify-content: center; padding: var(--ac-space-md); }
+        .ac-logo-strip__logo-placeholder {
+            width: 80px; height: 32px; background: var(--ac-color-border);
+            opacity: 0.4; transition: opacity 300ms var(--ac-ease-out);
+        }
+        .ac-logo-strip__item:hover .ac-logo-strip__logo-placeholder { opacity: 1; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .ac-services-grid__grid { grid-template-columns: repeat(2, 1fr); }
+            .ac-stats-counter__grid { grid-template-columns: repeat(2, 1fr); }
+            .ac-stats-counter__item:nth-child(2n) { border-right: none; }
+            .ac-stats-counter__item { border-bottom: 1px solid var(--ac-color-border); }
+            .ac-stats-counter__item:nth-last-child(-n+2) { border-bottom: none; }
+            .ac-image-text__container { grid-template-columns: 1fr; }
+            .ac-feature-columns__grid { grid-template-columns: 1fr; }
+            .ac-logo-strip__grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .ac-services-grid__grid { grid-template-columns: 1fr; }
+            .ac-stats-counter__grid { grid-template-columns: 1fr; }
+            .ac-stats-counter__item { border-right: none; }
+            .ac-contact-form__form { grid-template-columns: 1fr; }
+            .ac-cta-banner__actions { flex-direction: column; align-items: flex-start; }
+            .ac-logo-strip__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════
+         1. HERO BANNER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label demo-label--on-dark">alpacode/hero-banner</span>
+    <section class="ac-hero-banner">
+        <div class="ac-hero-banner__bg"></div>
+        <div class="ac-hero-banner__overlay"></div>
+        <div class="ac-hero-banner__content">
+            <div class="ac-hero-banner__container">
+                <span class="ac-hero-banner__eyebrow ac-eyebrow" data-ac-reveal="fade">Established 2024</span>
+                <h1 class="ac-hero-banner__title" data-ac-reveal="up">Built to last</h1>
+                <p class="ac-hero-banner__subtitle" data-ac-reveal="fade">Precision engineering meets timeless design. Every detail considered, every choice intentional.</p>
+                <div class="ac-hero-banner__cta" data-ac-reveal="up">
+                    <a href="#" class="ac-btn ac-btn--on-dark">Explore</a>
+                </div>
+            </div>
+        </div>
+        <div class="ac-hero-banner__dots">
+            <button class="ac-hero-banner__dot ac-hero-banner__dot--active"></button>
+            <button class="ac-hero-banner__dot"></button>
+            <button class="ac-hero-banner__dot"></button>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         2. LOGO STRIP
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/logo-strip</span>
+    <section class="ac-logo-strip" data-ac-reveal="fade">
+        <div class="ac-logo-strip__container">
+            <span class="ac-logo-strip__eyebrow ac-eyebrow">Trusted by 500+ companies</span>
+            <div class="ac-logo-strip__grid">
+                <div class="ac-logo-strip__item"><div class="ac-logo-strip__logo-placeholder"></div></div>
+                <div class="ac-logo-strip__item"><div class="ac-logo-strip__logo-placeholder"></div></div>
+                <div class="ac-logo-strip__item"><div class="ac-logo-strip__logo-placeholder"></div></div>
+                <div class="ac-logo-strip__item"><div class="ac-logo-strip__logo-placeholder"></div></div>
+                <div class="ac-logo-strip__item"><div class="ac-logo-strip__logo-placeholder"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         3. SECTION HEADER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/section-header</span>
+    <header class="ac-section-header" data-ac-reveal="up">
+        <div class="ac-section-header__container">
+            <span class="ac-section-header__eyebrow ac-eyebrow">Our Approach</span>
+            <h2 class="ac-section-header__title">Precision in every detail</h2>
+            <p class="ac-section-header__subtitle">Crafted with intention, built to endure. Every element serves a purpose.</p>
+        </div>
+    </header>
+
+    <!-- ════════════════════════════════════════════
+         4. SERVICES GRID
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/services-grid</span>
+    <section class="ac-services-grid">
+        <header class="ac-services-grid__header" data-ac-reveal="up">
+            <div class="ac-services-grid__header-container">
+                <span class="ac-services-grid__eyebrow ac-eyebrow">What We Do</span>
+                <h2 class="ac-services-grid__title">Core capabilities</h2>
+            </div>
+        </header>
+        <div class="ac-services-grid__grid" data-ac-stagger>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">01</span>
+                <h3 class="ac-services-grid__item-title">Strategy</h3>
+                <p class="ac-services-grid__item-desc">Defining direction with clarity and purpose.</p>
+            </article>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">02</span>
+                <h3 class="ac-services-grid__item-title">Design</h3>
+                <p class="ac-services-grid__item-desc">Precision in every pixel, intention in every choice.</p>
+            </article>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">03</span>
+                <h3 class="ac-services-grid__item-title">Engineering</h3>
+                <p class="ac-services-grid__item-desc">Built to perform, structured to scale.</p>
+            </article>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">04</span>
+                <h3 class="ac-services-grid__item-title">Optimization</h3>
+                <p class="ac-services-grid__item-desc">Continuous refinement for peak performance.</p>
+            </article>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">05</span>
+                <h3 class="ac-services-grid__item-title">Support</h3>
+                <p class="ac-services-grid__item-desc">Dedicated partnership beyond delivery.</p>
+            </article>
+            <article class="ac-services-grid__item">
+                <span class="ac-services-grid__number">06</span>
+                <h3 class="ac-services-grid__item-title">Analytics</h3>
+                <p class="ac-services-grid__item-desc">Data-informed decisions, measurable outcomes.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         5. DIVIDER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/divider</span>
+    <div class="ac-divider">
+        <div class="ac-divider__container">
+            <hr class="ac-divider__line" data-ac-line>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         6. STATS COUNTER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/stats-counter</span>
+    <section class="ac-stats-counter">
+        <div class="ac-stats-counter__grid" data-ac-stagger>
+            <div class="ac-stats-counter__item">
+                <div class="ac-stats-counter__value"><span data-ac-counter="500">0</span><span class="ac-stats-counter__suffix">+</span></div>
+                <span class="ac-stats-counter__label">Projects Delivered</span>
+            </div>
+            <div class="ac-stats-counter__item">
+                <div class="ac-stats-counter__value"><span data-ac-counter="98">0</span><span class="ac-stats-counter__suffix">%</span></div>
+                <span class="ac-stats-counter__label">Client Retention</span>
+            </div>
+            <div class="ac-stats-counter__item">
+                <div class="ac-stats-counter__value"><span data-ac-counter="12">0</span><span class="ac-stats-counter__suffix">yr</span></div>
+                <span class="ac-stats-counter__label">Industry Experience</span>
+            </div>
+            <div class="ac-stats-counter__item">
+                <div class="ac-stats-counter__value"><span data-ac-counter="24">0</span><span class="ac-stats-counter__suffix">/7</span></div>
+                <span class="ac-stats-counter__label">Dedicated Support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         7. IMAGE + TEXT
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/image-text</span>
+    <section class="ac-image-text">
+        <div class="ac-image-text__container">
+            <div class="ac-image-text__placeholder" data-ac-reveal="fade">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20"/><circle cx="8" cy="8" r="2"/><path d="M2 16l5-5 4 4 3-3 8 8"/></svg>
+            </div>
+            <div class="ac-image-text__content" data-ac-reveal="up">
+                <span class="ac-image-text__eyebrow ac-eyebrow">About Us</span>
+                <h2 class="ac-image-text__title">Crafted with precision</h2>
+                <p class="ac-image-text__desc">We believe in the power of deliberate design. Every project begins with a clear understanding of purpose and ends with a result that stands the test of time.</p>
+                <div class="ac-image-text__cta">
+                    <a href="#" class="ac-btn ac-btn--outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         8. FEATURE COLUMNS
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/feature-columns</span>
+    <section class="ac-feature-columns">
+        <header class="ac-feature-columns__header" data-ac-reveal="up">
+            <div class="ac-feature-columns__header-container">
+                <span class="ac-feature-columns__eyebrow ac-eyebrow">Why Choose Us</span>
+                <h2 class="ac-feature-columns__title">Built on principles</h2>
+            </div>
+        </header>
+        <div class="ac-feature-columns__grid" data-ac-stagger>
+            <article class="ac-feature-columns__item">
+                <span class="ac-feature-columns__number">01</span>
+                <h3 class="ac-feature-columns__item-title">Precision</h3>
+                <p class="ac-feature-columns__item-desc">Every detail is deliberate. Nothing is accidental.</p>
+            </article>
+            <article class="ac-feature-columns__item">
+                <span class="ac-feature-columns__number">02</span>
+                <h3 class="ac-feature-columns__item-title">Durability</h3>
+                <p class="ac-feature-columns__item-desc">Built with materials and methods that endure.</p>
+            </article>
+            <article class="ac-feature-columns__item">
+                <span class="ac-feature-columns__number">03</span>
+                <h3 class="ac-feature-columns__item-title">Clarity</h3>
+                <p class="ac-feature-columns__item-desc">Complex problems resolved into simple solutions.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         9. TESTIMONIALS SLIDER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/testimonials-slider</span>
+    <section class="ac-testimonials-slider">
+        <div class="ac-testimonials-slider__container">
+            <header class="ac-testimonials-slider__header" data-ac-reveal="up">
+                <span class="ac-eyebrow">Testimonials</span>
+                <h2 class="ac-testimonials-slider__title">What our clients say</h2>
+            </header>
+            <div class="ac-testimonials-slider__track">
+                <blockquote class="ac-testimonials-slider__slide ac-testimonials-slider__slide--active" data-slide-index="0">
+                    <p class="ac-testimonials-slider__quote">Exceptional attention to detail. The result exceeded our expectations in every way.</p>
+                    <footer>
+                        <cite class="ac-testimonials-slider__author">Sarah Chen</cite>
+                        <span class="ac-testimonials-slider__role">Director of Operations</span>
+                    </footer>
+                </blockquote>
+                <blockquote class="ac-testimonials-slider__slide" data-slide-index="1">
+                    <p class="ac-testimonials-slider__quote">They understood our vision from day one and delivered a product that truly represents our brand.</p>
+                    <footer>
+                        <cite class="ac-testimonials-slider__author">Marcus Webb</cite>
+                        <span class="ac-testimonials-slider__role">Founder & CEO</span>
+                    </footer>
+                </blockquote>
+                <blockquote class="ac-testimonials-slider__slide" data-slide-index="2">
+                    <p class="ac-testimonials-slider__quote">The precision and clarity they brought to our project was unlike anything we had experienced before.</p>
+                    <footer>
+                        <cite class="ac-testimonials-slider__author">Elena Vasquez</cite>
+                        <span class="ac-testimonials-slider__role">Head of Design</span>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="ac-testimonials-slider__controls">
+                <button class="ac-testimonials-slider__arrow" data-dir="prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+                </button>
+                <div class="ac-testimonials-slider__dots">
+                    <button class="ac-testimonials-slider__dot ac-testimonials-slider__dot--active" data-dot="0"></button>
+                    <button class="ac-testimonials-slider__dot" data-dot="1"></button>
+                    <button class="ac-testimonials-slider__dot" data-dot="2"></button>
+                </div>
+                <button class="ac-testimonials-slider__arrow" data-dir="next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         10. FAQ ACCORDION
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/faq-accordion</span>
+    <section class="ac-faq-accordion">
+        <div class="ac-faq-accordion__container">
+            <header class="ac-faq-accordion__header" data-ac-reveal="up">
+                <span class="ac-eyebrow">FAQ</span>
+                <h2 class="ac-faq-accordion__title">Common questions</h2>
+            </header>
+            <div class="ac-faq-accordion__list" data-ac-stagger>
+                <div class="ac-faq-accordion__item">
+                    <button class="ac-faq-accordion__trigger" aria-expanded="false">
+                        <span class="ac-faq-accordion__question">What is your approach to design?</span>
+                        <span class="ac-faq-accordion__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><line class="ac-faq-accordion__icon-h" x1="3" y1="8" x2="13" y2="8"/><line class="ac-faq-accordion__icon-v" x1="8" y1="3" x2="8" y2="13"/></svg></span>
+                    </button>
+                    <div class="ac-faq-accordion__panel"><div class="ac-faq-accordion__answer"><p>We focus on structural clarity, precision, and restraint. Every element serves a purpose — nothing is decorative without function.</p></div></div>
+                </div>
+                <div class="ac-faq-accordion__item">
+                    <button class="ac-faq-accordion__trigger" aria-expanded="false">
+                        <span class="ac-faq-accordion__question">How long does a typical project take?</span>
+                        <span class="ac-faq-accordion__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><line class="ac-faq-accordion__icon-h" x1="3" y1="8" x2="13" y2="8"/><line class="ac-faq-accordion__icon-v" x1="8" y1="3" x2="8" y2="13"/></svg></span>
+                    </button>
+                    <div class="ac-faq-accordion__panel"><div class="ac-faq-accordion__answer"><p>Timelines depend on scope and complexity. We prioritize thoroughness over speed, ensuring every deliverable meets our standards.</p></div></div>
+                </div>
+                <div class="ac-faq-accordion__item">
+                    <button class="ac-faq-accordion__trigger" aria-expanded="false">
+                        <span class="ac-faq-accordion__question">Do you offer ongoing support?</span>
+                        <span class="ac-faq-accordion__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><line class="ac-faq-accordion__icon-h" x1="3" y1="8" x2="13" y2="8"/><line class="ac-faq-accordion__icon-v" x1="8" y1="3" x2="8" y2="13"/></svg></span>
+                    </button>
+                    <div class="ac-faq-accordion__panel"><div class="ac-faq-accordion__answer"><p>Yes. We provide dedicated post-launch support to ensure long-term success and continuous improvement.</p></div></div>
+                </div>
+                <div class="ac-faq-accordion__item">
+                    <button class="ac-faq-accordion__trigger" aria-expanded="false">
+                        <span class="ac-faq-accordion__question">What industries do you work with?</span>
+                        <span class="ac-faq-accordion__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><line class="ac-faq-accordion__icon-h" x1="3" y1="8" x2="13" y2="8"/><line class="ac-faq-accordion__icon-v" x1="8" y1="3" x2="8" y2="13"/></svg></span>
+                    </button>
+                    <div class="ac-faq-accordion__panel"><div class="ac-faq-accordion__answer"><p>We work across industries. Our design system is built to be universal — the principles of clarity and precision apply everywhere.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         11. CTA BANNER
+         ════════════════════════════════════════════ -->
+    <span class="demo-label demo-label--on-dark">alpacode/cta-banner</span>
+    <section class="ac-cta-banner ac-cta-banner--dark" data-ac-reveal="up">
+        <div class="ac-cta-banner__container">
+            <div class="ac-cta-banner__content">
+                <span class="ac-cta-banner__eyebrow ac-eyebrow">Get Started</span>
+                <h2 class="ac-cta-banner__title">Ready to build something exceptional?</h2>
+                <p class="ac-cta-banner__desc">Let's discuss your project and find the right approach.</p>
+                <div class="ac-cta-banner__actions">
+                    <a href="#" class="ac-btn ac-btn--on-dark">Start a Project</a>
+                    <a href="#" class="ac-btn ac-btn--ghost ac-btn--on-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         12. CONTACT FORM
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/contact-form</span>
+    <section class="ac-contact-form">
+        <div class="ac-contact-form__container">
+            <header class="ac-contact-form__header" data-ac-reveal="up">
+                <span class="ac-eyebrow">Contact</span>
+                <h2 class="ac-contact-form__title">Get in touch</h2>
+                <p class="ac-contact-form__subtitle">We'd love to hear from you. Send us a message and we'll respond promptly.</p>
+            </header>
+            <form class="ac-contact-form__form" onsubmit="event.preventDefault(); alert('Form submitted (demo)');">
+                <div class="ac-contact-form__field">
+                    <label class="ac-contact-form__label">Name</label>
+                    <input type="text" class="ac-contact-form__input" placeholder="Your name">
+                </div>
+                <div class="ac-contact-form__field">
+                    <label class="ac-contact-form__label">Email</label>
+                    <input type="email" class="ac-contact-form__input" placeholder="your@email.com">
+                </div>
+                <div class="ac-contact-form__field ac-contact-form__field--full">
+                    <label class="ac-contact-form__label">Message</label>
+                    <textarea class="ac-contact-form__textarea" placeholder="Your message"></textarea>
+                </div>
+                <div class="ac-contact-form__footer">
+                    <button type="submit" class="ac-btn ac-btn--primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         13. PAGE HEADER (shown last as interior page example)
+         ════════════════════════════════════════════ -->
+    <span class="demo-label demo-label--on-dark">alpacode/page-header</span>
+    <header class="ac-page-header">
+        <div class="ac-page-header__container">
+            <span class="ac-page-header__eyebrow ac-eyebrow" data-ac-reveal="fade">About</span>
+            <h1 class="ac-page-header__title" data-ac-reveal="up">Our Story</h1>
+            <p class="ac-page-header__desc" data-ac-reveal="fade">Founded on the principle that great design is invisible — you feel it, not see it.</p>
+        </div>
+        <div class="ac-page-header__border" data-ac-line></div>
+    </header>
+
+
+    <!-- ════════════════════════════════════════════
+         JAVASCRIPT
+         ════════════════════════════════════════════ -->
+    <script>
+    (function() {
+        'use strict';
+
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ── Scroll Reveal ── */
+        function initReveal() {
+            var els = document.querySelectorAll('[data-ac-reveal]');
+            if (reducedMotion) { els.forEach(function(el) { el.classList.add('ac-revealed'); }); return; }
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        var delay = parseInt(e.target.getAttribute('data-ac-reveal-delay'), 10) || 0;
+                        if (delay > 0) { setTimeout(function() { e.target.classList.add('ac-revealed'); }, delay); }
+                        else { e.target.classList.add('ac-revealed'); }
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function(el) { obs.observe(el); });
+        }
+
+        /* ── Stagger ── */
+        function initStagger() {
+            var parents = document.querySelectorAll('[data-ac-stagger]');
+            if (reducedMotion) { parents.forEach(function(p) { p.classList.add('ac-revealed'); }); return; }
+            parents.forEach(function(p) {
+                var children = p.children;
+                for (var i = 0; i < children.length; i++) { children[i].style.transitionDelay = (i * 100) + 'ms'; }
+            });
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('ac-revealed'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1 });
+            parents.forEach(function(p) { obs.observe(p); });
+        }
+
+        /* ── Line Draw ── */
+        function initLine() {
+            var els = document.querySelectorAll('[data-ac-line]');
+            if (reducedMotion) { els.forEach(function(el) { el.classList.add('ac-revealed'); }); return; }
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('ac-revealed'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1 });
+            els.forEach(function(el) { obs.observe(el); });
+        }
+
+        /* ── Counter ── */
+        function initCounter() {
+            var els = document.querySelectorAll('[data-ac-counter]');
+            if (reducedMotion) { els.forEach(function(el) { el.textContent = el.getAttribute('data-ac-counter'); }); return; }
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        var el = e.target;
+                        var target = parseInt(el.getAttribute('data-ac-counter'), 10);
+                        var duration = 1800;
+                        var startTime = null;
+                        function animate(ts) {
+                            if (!startTime) startTime = ts;
+                            var progress = Math.min((ts - startTime) / duration, 1);
+                            var eased = 1 - Math.pow(1 - progress, 3);
+                            el.textContent = Math.round(eased * target);
+                            if (progress < 1) requestAnimationFrame(animate);
+                        }
+                        requestAnimationFrame(animate);
+                        obs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.3 });
+            els.forEach(function(el) { el.textContent = '0'; obs.observe(el); });
+        }
+
+        /* ── FAQ Accordion ── */
+        function initAccordion() {
+            document.querySelectorAll('.ac-faq-accordion__trigger').forEach(function(trigger) {
+                trigger.addEventListener('click', function() {
+                    var item = this.closest('.ac-faq-accordion__item');
+                    var isOpen = item.classList.contains('ac-faq-accordion__item--open');
+                    item.classList.toggle('ac-faq-accordion__item--open');
+                    this.setAttribute('aria-expanded', !isOpen);
+                });
+            });
+        }
+
+        /* ── Testimonials Slider ── */
+        function initTestimonials() {
+            var container = document.querySelector('.ac-testimonials-slider');
+            if (!container) return;
+            var slides = container.querySelectorAll('.ac-testimonials-slider__slide');
+            var dots = container.querySelectorAll('.ac-testimonials-slider__dot');
+            var current = 0;
+
+            function goTo(index) {
+                slides.forEach(function(s, i) { s.classList.toggle('ac-testimonials-slider__slide--active', i === index); });
+                dots.forEach(function(d, i) { d.classList.toggle('ac-testimonials-slider__dot--active', i === index); });
+                current = index;
+            }
+
+            container.querySelectorAll('.ac-testimonials-slider__arrow').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var dir = this.getAttribute('data-dir');
+                    if (dir === 'next') goTo((current + 1) % slides.length);
+                    else goTo((current - 1 + slides.length) % slides.length);
+                });
+            });
+
+            dots.forEach(function(dot, i) {
+                dot.addEventListener('click', function() { goTo(i); });
+            });
+        }
+
+        /* ── Init ── */
+        initReveal();
+        initStagger();
+        initLine();
+        initCounter();
+        initAccordion();
+        initTestimonials();
+    })();
+    </script>
+</body>
+</html>
