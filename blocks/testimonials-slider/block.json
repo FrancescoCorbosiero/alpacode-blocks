@@ -1,0 +1,64 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/testimonials-slider",
+    "version": "1.0.0",
+    "title": "Testimonials Slider",
+    "category": "alpacode",
+    "icon": "format-quote",
+    "description": "Drag carousel of testimonials with dots navigation. Crossfade transitions.",
+    "keywords": ["testimonials", "slider", "carousel", "reviews", "quotes"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        },
+        "autoplay": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplaySpeed": {
+            "type": "number",
+            "default": 5000
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "eyebrow": "Testimonials",
+            "title": "What our clients say",
+            "items": [
+                { "quote": "Exceptional attention to detail. The result exceeded our expectations in every way.", "author": "Sarah Chen", "role": "Director of Operations" },
+                { "quote": "They understood our vision from day one and delivered a product that truly represents our brand.", "author": "Marcus Webb", "role": "Founder & CEO" }
+            ]
+        }
+    }
+}

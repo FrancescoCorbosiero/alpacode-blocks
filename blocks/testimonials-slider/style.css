@@ -1,0 +1,196 @@
+/**
+ * alpacode/testimonials-slider — Frontend Styles
+ */
+
+.ac-testimonials-slider {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface-alt);
+}
+
+.ac-testimonials-slider__container {
+    max-width: var(--ac-max-width-narrow);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+/* ── Header ── */
+
+.ac-testimonials-slider__header {
+    margin-bottom: var(--ac-space-3xl);
+}
+
+.ac-testimonials-slider__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-testimonials-slider__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* ── Track ── */
+
+.ac-testimonials-slider__track {
+    position: relative;
+    min-height: 200px;
+}
+
+/* ── Slides ── */
+
+.ac-testimonials-slider__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 600ms var(--ac-ease-in-out);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.ac-testimonials-slider__slide--active {
+    position: relative;
+    opacity: 1;
+}
+
+.ac-testimonials-slider__quote {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-2xl);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ac-color-text);
+    margin: 0 0 var(--ac-space-2xl);
+}
+
+.ac-testimonials-slider__attribution {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ac-space-xs);
+}
+
+.ac-testimonials-slider__author {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--ac-color-text);
+}
+
+.ac-testimonials-slider__role {
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ac-color-text-muted);
+}
+
+/* ── Controls ── */
+
+.ac-testimonials-slider__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--ac-space-lg);
+    margin-top: var(--ac-space-2xl);
+    padding-top: var(--ac-space-lg);
+    border-top: 1px solid var(--ac-color-border);
+}
+
+/* ── Arrows ── */
+
+.ac-testimonials-slider__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: 1px solid var(--ac-color-border);
+    border-radius: 0;
+    cursor: pointer;
+    color: var(--ac-color-text);
+    padding: 0;
+    transition: border-color 300ms var(--ac-ease-out),
+                color 300ms var(--ac-ease-out);
+}
+
+.ac-testimonials-slider__arrow:hover {
+    border-color: var(--ac-color-text);
+}
+
+.ac-testimonials-slider__arrow:focus-visible {
+    outline: 1px solid var(--ac-color-accent);
+    outline-offset: 2px;
+}
+
+.ac-testimonials-slider__arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ac-testimonials-slider__arrow--prev:hover svg {
+    transform: translateX(-2px);
+}
+
+.ac-testimonials-slider__arrow--next:hover svg {
+    transform: translateX(2px);
+}
+
+/* ── Dots ── */
+
+.ac-testimonials-slider__dots {
+    display: flex;
+    gap: var(--ac-space-sm);
+    flex: 1;
+    justify-content: center;
+}
+
+.ac-testimonials-slider__dot {
+    width: 24px;
+    height: 2px;
+    background: var(--ac-color-border);
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 0;
+    transition: background 300ms var(--ac-ease-out),
+                width 300ms var(--ac-ease-out);
+}
+
+.ac-testimonials-slider__dot--active {
+    background: var(--ac-color-text);
+    width: 40px;
+}
+
+.ac-testimonials-slider__dot:focus-visible {
+    outline: 1px solid var(--ac-color-accent);
+    outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .ac-testimonials-slider__slide {
+        transition: none;
+    }
+
+    .ac-testimonials-slider__dot {
+        transition: none;
+    }
+
+    .ac-testimonials-slider__arrow svg {
+        transition: none;
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-testimonials-slider {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
