@@ -1,0 +1,164 @@
+/**
+ * alpacode/hero-banner — Frontend Styles
+ */
+
+.ac-hero-banner {
+    position: relative;
+    height: var(--ac-hero-height, 90vh);
+    min-height: 500px;
+    overflow: hidden;
+    background: var(--ac-color-primary-dark);
+}
+
+/* ── Slides ── */
+
+.ac-hero-banner__slides {
+    position: absolute;
+    inset: 0;
+}
+
+.ac-hero-banner__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1000ms var(--ac-ease-in-out);
+}
+
+.ac-hero-banner__slide--active {
+    opacity: 1;
+}
+
+.ac-hero-banner__slide--placeholder {
+    background: var(--ac-color-primary-dark);
+}
+
+.ac-hero-banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ── Overlay ── */
+
+.ac-hero-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--ac-color-primary-dark);
+    opacity: var(--ac-hero-overlay, 0.75);
+}
+
+/* ── Content ── */
+
+.ac-hero-banner__content {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: var(--ac-space-4xl);
+}
+
+.ac-hero-banner__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+    width: 100%;
+}
+
+.ac-hero-banner__eyebrow {
+    display: block;
+    color: var(--ac-color-text-on-dark-muted);
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-hero-banner__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-5xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ac-color-text-on-dark);
+    margin: 0;
+    max-width: 800px;
+}
+
+.ac-hero-banner__subtitle {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-lg);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ac-color-text-on-dark-muted);
+    margin-top: var(--ac-space-md);
+    max-width: 560px;
+}
+
+.ac-hero-banner__cta {
+    margin-top: var(--ac-space-2xl);
+}
+
+/* ── Dots ── */
+
+.ac-hero-banner__dots {
+    position: absolute;
+    bottom: var(--ac-space-xl);
+    right: var(--ac-space-xl);
+    display: flex;
+    gap: var(--ac-space-sm);
+}
+
+.ac-hero-banner__dot {
+    width: 24px;
+    height: 2px;
+    background: var(--ac-color-text-on-dark-muted);
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.4;
+    transition: opacity 300ms var(--ac-ease-out),
+                width 300ms var(--ac-ease-out);
+}
+
+.ac-hero-banner__dot--active {
+    opacity: 1;
+    width: 40px;
+}
+
+.ac-hero-banner__dot:focus-visible {
+    outline: 1px solid var(--ac-color-accent);
+    outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .ac-hero-banner {
+        min-height: 400px;
+    }
+
+    .ac-hero-banner__content {
+        padding-bottom: var(--ac-space-3xl);
+    }
+
+    .ac-hero-banner__dots {
+        bottom: var(--ac-space-md);
+        right: var(--ac-space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .ac-hero-banner__content {
+        padding-bottom: var(--ac-space-2xl);
+    }
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .ac-hero-banner__slide {
+        transition: none;
+    }
+
+    .ac-hero-banner__dot {
+        transition: none;
+    }
+}

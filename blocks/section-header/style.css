@@ -1,0 +1,48 @@
+/**
+ * alpacode/section-header — Frontend Styles
+ */
+
+.ac-section-header {
+    padding: var(--ac-space-3xl) 0 var(--ac-space-xl);
+}
+
+.ac-section-header__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-section-header__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-section-header__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ac-color-text);
+    margin: 0;
+}
+
+.ac-section-header__subtitle {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ac-color-text-muted);
+    margin-top: var(--ac-space-sm);
+    max-width: 600px;
+}
+
+/* Center alignment */
+.ac-section-header--center .ac-section-header__container {
+    text-align: center;
+}
+
+.ac-section-header--center .ac-section-header__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+}

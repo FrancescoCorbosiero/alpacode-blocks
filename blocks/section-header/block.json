@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/section-header",
+    "version": "1.0.0",
+    "title": "Section Header",
+    "category": "alpacode",
+    "icon": "heading",
+    "description": "Eyebrow, title, and subtitle stack for introducing content sections.",
+    "keywords": ["heading", "section", "title", "eyebrow"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "subtitle": {
+            "type": "string",
+            "default": ""
+        },
+        "alignment": {
+            "type": "string",
+            "default": "left"
+        },
+        "headingLevel": {
+            "type": "string",
+            "default": "h2"
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Our Approach",
+            "title": "Precision in every detail",
+            "subtitle": "Crafted with intention, built to endure. Every element serves a purpose.",
+            "alignment": "left",
+            "headingLevel": "h2"
+        }
+    }
+}

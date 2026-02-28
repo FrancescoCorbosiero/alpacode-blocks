@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/faq-accordion",
+    "version": "1.0.0",
+    "title": "FAQ Accordion",
+    "category": "alpacode",
+    "icon": "list-view",
+    "description": "Expandable FAQ items with hairline dividers. Minimal plus/minus toggle icon.",
+    "keywords": ["faq", "accordion", "questions", "toggle", "expand"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "eyebrow": "FAQ",
+            "title": "Common questions",
+            "items": [
+                { "question": "What is your approach to design?", "answer": "We focus on structural clarity, precision, and restraint. Every element serves a purpose." },
+                { "question": "How long does a typical project take?", "answer": "Timelines depend on scope. We prioritize thoroughness over speed." },
+                { "question": "Do you offer ongoing support?", "answer": "Yes. We provide dedicated support to ensure long-term success." }
+            ]
+        }
+    }
+}

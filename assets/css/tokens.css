@@ -1,0 +1,77 @@
+/**
+ * Alpacode Blocks — Design Tokens
+ * CSS custom properties with WordPress preset fallbacks.
+ * Themes override via their own theme.json → WP presets cascade automatically.
+ */
+
+:root {
+    /* ── Colors ── */
+    --ac-color-primary:             var(--wp--preset--color--ac-primary, #18181B);
+    --ac-color-primary-light:       var(--wp--preset--color--ac-primary-light, #27272A);
+    --ac-color-primary-dark:        var(--wp--preset--color--ac-primary-dark, #09090B);
+    --ac-color-accent:              var(--wp--preset--color--ac-accent, #64748B);
+    --ac-color-accent-light:        var(--wp--preset--color--ac-accent-light, #7C8DA0);
+    --ac-color-accent-dark:         var(--wp--preset--color--ac-accent-dark, #475569);
+    --ac-color-surface:             var(--wp--preset--color--ac-surface, #FAFAFA);
+    --ac-color-surface-alt:         var(--wp--preset--color--ac-surface-alt, #F4F4F5);
+    --ac-color-border:              var(--wp--preset--color--ac-border, #E4E4E7);
+    --ac-color-border-subtle:       var(--wp--preset--color--ac-border-subtle, #F0F0F2);
+    --ac-color-text:                var(--wp--preset--color--ac-text, #18181B);
+    --ac-color-text-muted:          var(--wp--preset--color--ac-text-muted, #71717A);
+    --ac-color-text-faint:          var(--wp--preset--color--ac-text-faint, #A1A1AA);
+    --ac-color-text-on-dark:        var(--wp--preset--color--ac-text-on-dark, #FAFAFA);
+    --ac-color-text-on-dark-muted:  var(--wp--preset--color--ac-text-on-dark-muted, #A1A1AA);
+    --ac-color-success:             var(--wp--preset--color--ac-success, #16A34A);
+    --ac-color-error:               var(--wp--preset--color--ac-error, #DC2626);
+
+    /* ── Typography — Font Families ── */
+    --ac-font-display:  var(--wp--preset--font-family--ac-display, 'DM Sans', 'Inter', system-ui, sans-serif);
+    --ac-font-body:     var(--wp--preset--font-family--ac-body, 'Inter', system-ui, -apple-system, sans-serif);
+    --ac-font-mono:     var(--wp--preset--font-family--ac-mono, 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace);
+
+    /* ── Typography — Type Scale (fluid clamp) ── */
+    --ac-text-xs:       clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
+    --ac-text-sm:       clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+    --ac-text-base:     clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+    --ac-text-lg:       clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+    --ac-text-xl:       clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    --ac-text-2xl:      clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+    --ac-text-3xl:      clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem);
+    --ac-text-4xl:      clamp(2.25rem, 1.6rem + 2.2vw, 3.5rem);
+    --ac-text-5xl:      clamp(2.75rem, 1.8rem + 3.5vw, 5rem);
+    --ac-text-counter:  clamp(3.5rem, 2rem + 5vw, 7rem);
+
+    /* ── Spacing ── */
+    --ac-space-xs:      0.25rem;
+    --ac-space-sm:      0.5rem;
+    --ac-space-md:      1rem;
+    --ac-space-lg:      1.5rem;
+    --ac-space-xl:      2rem;
+    --ac-space-2xl:     3rem;
+    --ac-space-3xl:     4.5rem;
+    --ac-space-4xl:     6rem;
+    --ac-space-5xl:     9rem;
+    --ac-space-section: clamp(6rem, 4rem + 6vw, 11rem);
+
+    /* ── Layout ── */
+    --ac-max-width:         1200px;
+    --ac-max-width-narrow:  680px;
+    --ac-max-width-wide:    1400px;
+
+    /* ── Easing ── */
+    --ac-ease-out:      cubic-bezier(0.25, 1, 0.5, 1);
+    --ac-ease-in-out:   cubic-bezier(0.45, 0, 0.55, 1);
+    --ac-ease-precise:  cubic-bezier(0.2, 0, 0, 1);
+    --ac-ease-linear:   linear;
+
+    /* ── Shadows ── */
+    --ac-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.04);
+    --ac-shadow-md:     0 2px 8px rgba(0, 0, 0, 0.06);
+    --ac-shadow-lg:     0 4px 16px rgba(0, 0, 0, 0.08);
+
+    /* ── Z-Index ── */
+    --ac-z-dropdown:    100;
+    --ac-z-sticky:      200;
+    --ac-z-fixed:       500;
+    --ac-z-modal:       1000;
+}

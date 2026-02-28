@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/services-grid",
+    "version": "1.0.0",
+    "title": "Services Grid",
+    "category": "alpacode",
+    "icon": "grid-view",
+    "description": "Hairline-bordered grid of service items. Typography-driven cards with no shadows or backgrounds.",
+    "keywords": ["services", "grid", "cards", "features"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "subtitle": {
+            "type": "string",
+            "default": ""
+        },
+        "columns": {
+            "type": "number",
+            "default": 3
+        },
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        },
+        "variant": {
+            "type": "string",
+            "default": "light"
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "What We Do",
+            "title": "Core capabilities",
+            "columns": 3,
+            "items": [
+                { "title": "Strategy", "description": "Defining direction with clarity and purpose." },
+                { "title": "Design", "description": "Precision in every pixel, intention in every choice." },
+                { "title": "Engineering", "description": "Built to perform, structured to scale." }
+            ]
+        }
+    }
+}

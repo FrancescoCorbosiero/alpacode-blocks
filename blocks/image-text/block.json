@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/image-text",
+    "version": "1.0.0",
+    "title": "Image + Text",
+    "category": "alpacode",
+    "icon": "align-pull-left",
+    "description": "Side-by-side image and text block with asymmetric layout. Responsive stacking.",
+    "keywords": ["image", "text", "media", "content", "split"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        },
+        "imageId": {
+            "type": "number",
+            "default": 0
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "imagePosition": {
+            "type": "string",
+            "default": "left"
+        },
+        "ctaText": {
+            "type": "string",
+            "default": ""
+        },
+        "ctaUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "variant": {
+            "type": "string",
+            "default": "light"
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "About Us",
+            "title": "Crafted with precision",
+            "description": "We believe in the power of deliberate design. Every project begins with a clear understanding of purpose and ends with a result that stands the test of time.",
+            "imagePosition": "left",
+            "ctaText": "Learn More",
+            "ctaUrl": "#"
+        }
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/cta-banner",
+    "version": "1.0.0",
+    "title": "CTA Banner",
+    "category": "alpacode",
+    "icon": "megaphone",
+    "description": "Call-to-action banner with title, description, and button. Light and dark variants.",
+    "keywords": ["cta", "call to action", "banner", "button"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        },
+        "ctaText": {
+            "type": "string",
+            "default": ""
+        },
+        "ctaUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "secondaryText": {
+            "type": "string",
+            "default": ""
+        },
+        "secondaryUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "variant": {
+            "type": "string",
+            "default": "dark"
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Get Started",
+            "title": "Ready to build something exceptional?",
+            "description": "Let's discuss your project and find the right approach.",
+            "ctaText": "Start a Project",
+            "ctaUrl": "#",
+            "secondaryText": "Learn More",
+            "secondaryUrl": "#",
+            "variant": "dark"
+        }
+    }
+}

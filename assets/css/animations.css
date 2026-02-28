@@ -1,0 +1,155 @@
+/**
+ * Alpacode Blocks — Animation Styles
+ * Scroll reveal, text reveal, image reveal, parallax, stagger, counter, hairline draw.
+ * Global JS (animations.js) adds .ac-revealed class via IntersectionObserver.
+ */
+
+/* ── Scroll Reveal ── */
+
+[data-ac-reveal] {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: opacity 700ms var(--ac-ease-precise),
+                transform 700ms var(--ac-ease-precise);
+}
+
+[data-ac-reveal="up"] {
+    transform: translateY(14px);
+}
+
+[data-ac-reveal="left"] {
+    transform: translateX(14px);
+}
+
+[data-ac-reveal="right"] {
+    transform: translateX(-14px);
+}
+
+[data-ac-reveal="fade"] {
+    transform: none;
+}
+
+[data-ac-reveal].ac-revealed {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* ── Text Reveal ── */
+
+[data-ac-text-reveal] .ac-text-chunk {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(8px);
+    clip-path: inset(0 0 100% 0);
+    transition: opacity 500ms var(--ac-ease-precise),
+                transform 500ms var(--ac-ease-precise),
+                clip-path 500ms var(--ac-ease-precise);
+}
+
+[data-ac-text-reveal].ac-revealed .ac-text-chunk {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+}
+
+/* ── Image Reveal ── */
+
+[data-ac-image-reveal] {
+    overflow: hidden;
+}
+
+[data-ac-image-reveal] img {
+    transition: clip-path 800ms var(--ac-ease-precise);
+}
+
+[data-ac-image-reveal="left"] img {
+    clip-path: inset(0 100% 0 0);
+}
+
+[data-ac-image-reveal="right"] img {
+    clip-path: inset(0 0 0 100%);
+}
+
+[data-ac-image-reveal="up"] img {
+    clip-path: inset(100% 0 0 0);
+}
+
+[data-ac-image-reveal="down"] img {
+    clip-path: inset(0 0 100% 0);
+}
+
+[data-ac-image-reveal].ac-revealed img {
+    clip-path: inset(0 0 0 0);
+}
+
+/* ── Hairline Draw ── */
+
+[data-ac-line] {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 800ms var(--ac-ease-precise);
+}
+
+[data-ac-line].ac-revealed {
+    transform: scaleX(1);
+}
+
+/* ── Counter ── */
+
+[data-ac-counter] {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Stagger ── */
+
+[data-ac-stagger] > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 700ms var(--ac-ease-precise),
+                transform 700ms var(--ac-ease-precise);
+}
+
+[data-ac-stagger].ac-revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    [data-ac-reveal],
+    [data-ac-stagger] > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    [data-ac-text-reveal] .ac-text-chunk {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        transition: none !important;
+    }
+
+    [data-ac-image-reveal] img {
+        clip-path: none !important;
+        transition: none !important;
+    }
+
+    [data-ac-line] {
+        transform: scaleX(1) !important;
+        transition: none !important;
+    }
+
+    [data-ac-parallax] {
+        transform: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
