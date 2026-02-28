@@ -337,4 +337,23 @@ Download WOFF2 files for:
 2. **Inter** — weights 400, 500 (Regular, Medium)
 3. **JetBrains Mono** — weight 400 (Regular only)
 
-Place in `assets/fonts/`. Register via `@font-face` in `assets/css/fonts.css` with `font-display: swap`.
+Place in `assets/fonts/`. Registered via `theme.json` `fontFace` declarations with `font-display: swap`.
+
+---
+
+## 8. Template Architecture
+
+The theme uses block templates for all page types. Templates use core WordPress blocks styled via `theme.json` global styles, combined with `alpacode/*` custom blocks.
+
+### Design Rules for Templates
+
+- **Header:** Monospace site title (uppercase, small, wide tracking) + navigation. Hairline bottom border. Minimal height.
+- **Footer:** Monospace site title + tagline left, copyright right. Hairline top border.
+- **Dark headers:** Archive, search, 404, and blog home use dark (`--ac-color-primary`) header sections with monospace eyebrows.
+- **Post lists:** Each post separated by hairline bottom borders. Date (monospace) → title → excerpt.
+- **Blog home:** 2-column grid with hairline top borders on each card.
+- **Single post:** Narrow content width (680px). Category + title + date header, then content, then prev/next navigation separated by hairline border.
+- **404:** Dark full-height section with oversized monospace "404", heading, description, and search form.
+- **Page:** Content only — the blocks placed in the page define the entire layout. Header and footer template parts wrap it.
+- **Pagination:** Monospace, small, uppercase. Previous/numbers/next in a flex row.
+- **All templates:** Zero border-radius on every element. Hairline dividers between sections. Generous section spacing.

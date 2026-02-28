@@ -1,22 +1,22 @@
-# CLAUDE.md — Alpacode Blocks
+# CLAUDE.md — Alpacode
 
 > Primary context file for LLM-assisted development.
-> Scaffold contract for a plugin-first WordPress block design system.
+> Scaffold contract for an architectural minimal WordPress block theme.
 > Read this file AND `CONTEXT.md` before generating any code.
 
 ---
 
 ## 1. Architecture
 
-This is a **plugin-first design system** for WordPress Gutenberg. The plugin is the product; the theme is a shell. All visual structure, components, interactivity, and animation patterns live in the plugin. Colors, fonts, and spacing are opinionated defaults that users override via `theme.json` or the Site Editor.
+This is a **block theme** for WordPress. The theme is the product — blocks, templates, design tokens, animations, and template structure all live in one package. Users customize appearance through the Site Editor and `theme.json` overrides.
 
 ### Core Principles
 
 - **Zero external JS dependencies.** No npm runtime packages on the frontend. Vanilla JS only.
 - **No build step.** Editor JS uses raw `wp.element.createElement`. No JSX, no transpiler, no bundler.
 - **Dynamic blocks only.** Every block uses server-side render (`render.php`). `save()` always returns `null`.
-- **Plugin portable.** CSS namespaced `ac-*`, blocks namespaced `alpacode/`, JS IIFE-scoped. Works on any theme.
-- **Theme-aware.** Design tokens flow from `theme.json` presets with plugin defaults as fallbacks. Users customize appearance through standard WordPress UI without touching code.
+- **Full template control.** Block templates for all page types: single, page, archive, search, 404. Editable in Site Editor.
+- **Theme-native tokens.** Design tokens defined in `theme.json` — WordPress generates CSS custom properties. `tokens.css` bridges `--wp--preset--*` to `--ac-*` for block CSS.
 - **Accessibility-first.** `prefers-reduced-motion` everywhere. ARIA on all interactives. Focus-visible outlines. European Accessibility Act compliant.
 - **Performance-first.** Per-block CSS/JS loading, speculation rules, `content-visibility`, responsive images via `wp_get_attachment_image()`, `fetchpriority` on LCP, deferred scripts.
 
@@ -31,20 +31,23 @@ This is a **plugin-first design system** for WordPress Gutenberg. The plugin is 
 ## 2. File System Structure
 
 ```
-alpacode-blocks/
-├── alpacode-blocks.php               # Main plugin file — global assets, block registration, category
+alpacode/
+├── style.css                         # Theme header (required by WP)
+├── theme.json                        # Design tokens, global styles, template/part declarations
+├── functions.php                     # Block registration, assets, category, includes
 ├── includes/
 │   ├── class-ac-contact-form.php     # REST API form handler
-│   ├── class-ac-performance.php      # Speculation rules, resource hints, LCP priority
-│   └── class-ac-theme-json.php       # Design token → WordPress editor settings bridge
+│   └── class-ac-performance.php      # Speculation rules, resource hints, LCP priority
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css                # Design tokens (:root custom properties with WP preset fallbacks)
+│   │   ├── tokens.css                # Bridge: --wp--preset--* → --ac-* custom properties
 │   │   ├── base.css                  # Reset, button system, global utilities
-│   │   └── animations.css            # Scroll reveal, text reveal, image reveal, parallax, stagger
+│   │   ├── animations.css            # Scroll reveal, text reveal, image reveal, parallax, stagger
+│   │   └── loaders.css               # Scroll progress, preloader, skeleton shimmer, page transition
 │   ├── js/
-│   │   └── animations.js             # Global animation modules (IntersectionObserver-based)
-│   └── fonts/                        # Self-hosted WOFF2 fonts
+│   │   ├── animations.js             # Global animation modules (IntersectionObserver-based)
+│   │   └── loaders.js                # Scroll progress, preloader, page transition JS
+│   └── fonts/                        # Self-hosted WOFF2 fonts (registered via theme.json fontFace)
 ├── blocks/
 │   └── {block-slug}/                 # One folder per block
 │       ├── block.json
@@ -53,6 +56,21 @@ alpacode-blocks/
 │       ├── style.css                 # Loaded only when block is on page
 │       ├── editor.css                # Editor-only (optional)
 │       └── view.js                   # Interactivity API — interactive widgets only (optional)
+├── templates/                        # Block templates — full page layouts
+│   ├── index.html                    # Fallback template
+│   ├── single.html                   # Single post
+│   ├── page.html                     # Static page (content only — blocks define layout)
+│   ├── home.html                     # Blog index
+│   ├── archive.html                  # Category/tag/date archives
+│   ├── search.html                   # Search results
+│   ├── 404.html                      # Not found
+│   ├── page-no-title.html            # Page without title
+│   └── page-full-width.html          # Full-width page
+├── parts/                            # Reusable template parts
+│   ├── header.html                   # Site header (title + navigation)
+│   └── footer.html                   # Site footer
+├── patterns/                         # Block patterns (predefined layouts)
+│   └── homepage.php                  # Full homepage layout pattern
 ├── snippets.html                     # Copy-paste reference for WP code editor
 ├── demo.html                         # Standalone vanilla HTML/CSS showcase of all blocks (no WP required)
 ├── CLAUDE.md                         # This file — scaffold contract
@@ -91,7 +109,7 @@ Every block follows this exact structure.
     "icon": "dashicon-name",
     "description": "What this block does.",
     "keywords": ["keyword1", "keyword2"],
-    "textdomain": "alpacode-blocks",
+    "textdomain": "alpacode",
     "attributes": {},
     "supports": {
         "align": ["full", "wide"],
@@ -119,6 +137,7 @@ Every block follows this exact structure.
 **Rules:**
 
 - `apiVersion` always `3`.
+- `textdomain` is `"alpacode"` (theme, not plugin).
 - `style` = per-block CSS, loaded only when block is present. Never put block CSS in global files.
 - `viewScriptModule` = per-block frontend JS. Only for interactive widgets. Omit entirely for static blocks — do not include the field if no view.js exists.
 - `example` = realistic sample data for inserter preview. Always include.
@@ -331,27 +350,66 @@ $eager_urls = apply_filters('ac_speculation_eager_urls', []);
 
 ### 5.4 CSS: `content-visibility: auto` on below-fold sections.
 
-### 5.5 Fonts: Self-hosted WOFF2. `font-display: swap`. No CDN.
+### 5.5 Fonts: Self-hosted WOFF2 via `theme.json` `fontFace`. `font-display: swap`. No CDN.
 
 ---
 
-## 6. theme.json Integration
+## 6. theme.json — Native Token Source
 
-Plugin injects tokens via `wp_theme_json_data_default` filter in `class-ac-theme-json.php`:
+Design tokens live natively in `theme.json` (no PHP bridge needed):
 
 - `settings.color.palette` — project colors, `defaultPalette: false`
-- `settings.typography.fontFamilies` — with fallback stacks
+- `settings.typography.fontFamilies` — with `fontFace` for self-hosted WOFF2
 - `settings.typography.fontSizes` — fluid `clamp()` scale
 - `settings.spacing.spacingSizes` — matching token scale
 - `settings.layout.contentSize` / `wideSize`
+- `settings.border.radius: false` — enforces zero border-radius in editor UI
+- `settings.shadow.presets` — minimal shadow scale
+- `styles.elements` — heading, link, button global styles
+- `styles.blocks` — core block overrides (separator, quote, code, post-title, navigation, etc.)
+- `templateParts` — header and footer declarations
+- `customTemplates` — page-no-title, page-full-width
 
 CSS bridge in `tokens.css`: `--ac-*: var(--wp--preset--*--ac-*, FALLBACK);`
 
-Themes override any token via their own `theme.json`. Overrides cascade automatically.
+Child themes override any token via their own `theme.json`. Overrides cascade automatically.
 
 ---
 
-## 7. Contact Form (REST API)
+## 7. Templates & Parts
+
+### Template Architecture
+
+All templates use `<!-- wp:template-part -->` for header/footer and core WordPress blocks for post content. The architectural minimal aesthetic carries through via `theme.json` global styles — all core blocks (post-title, post-date, navigation, pagination) are styled with monospace accents, hairline borders, and the token palette.
+
+| Template | File | Purpose |
+|---|---|---|
+| Index | `index.html` | Fallback — post list with hairline dividers |
+| Single Post | `single.html` | Narrow content (680px), category/title/date header, prev/next nav |
+| Page | `page.html` | Content only — blocks define everything |
+| Blog Home | `home.html` | Dark header "Journal", 2-column post grid |
+| Archive | `archive.html` | Dark header with archive title, post list |
+| Search | `search.html` | Dark header, search form, results list |
+| 404 | `404.html` | Dark page with oversized monospace "404", search form |
+| Page (No Title) | `page-no-title.html` | Content only, no title block |
+| Page (Full Width) | `page-full-width.html` | No content size constraint |
+
+### Template Parts
+
+| Part | File | Area | Description |
+|---|---|---|---|
+| Header | `header.html` | `header` | Monospace site title + navigation, hairline bottom border |
+| Footer | `footer.html` | `footer` | Site title + tagline left, copyright right, hairline top border |
+
+### Block Patterns
+
+| Pattern | File | Description |
+|---|---|---|
+| Homepage | `homepage.php` | Full homepage: hero → logos → marquee → services → stats → image-text → features → testimonials → FAQ → CTA → contact |
+
+---
+
+## 8. Contact Form (REST API)
 
 - Endpoint: `alpacode/v1/contact`
 - Rate limiting: transient, 5/IP/hour
@@ -361,7 +419,7 @@ Themes override any token via their own `theme.json`. Overrides cascade automati
 
 ---
 
-## 8. Accessibility (per block)
+## 9. Accessibility (per block)
 
 - [ ] `:focus-visible` outlines
 - [ ] Images: `alt` text or `alt=""`
@@ -375,20 +433,21 @@ Themes override any token via their own `theme.json`. Overrides cascade automati
 
 ---
 
-## 9. New Block Checklist
+## 10. New Block Checklist
 
 1. `blocks/{block-slug}/` folder
-2. `block.json` — `example`, `supports.color`, `supports.spacing`
+2. `block.json` — `example`, `supports.color`, `supports.spacing`, `textdomain: "alpacode"`
 3. `editor.js` — sidebar controls, placeholder
 4. `render.php` — `wp_get_attachment_image()`, escaping, animation attrs
 5. `style.css` — tokens only, responsive, `content-visibility`
 6. Interactive? → `view.js` (Interactivity API)
 7. Update `snippets.html`
-8. Auto-registers via `blocks/*/block.json` scan
+8. Update `demo.html` — add new block's section
+9. Auto-registers via `blocks/*/block.json` scan in `functions.php`
 
 ---
 
-## 10. demo.html — Standalone Showcase
+## 11. demo.html — Standalone Showcase
 
 A self-contained vanilla HTML file that demonstrates every block visually without requiring WordPress. Opens directly in a browser.
 
@@ -402,12 +461,12 @@ A self-contained vanilla HTML file that demonstrates every block visually withou
 - Animations use the same `data-ac-*` attributes with a minimal IntersectionObserver implementation.
 - Includes `prefers-reduced-motion` support.
 - Responsive: works at desktop, tablet, and mobile widths.
-- Uses Google Fonts CDN links for DM Sans, Inter, JetBrains Mono (demo convenience — the plugin self-hosts fonts).
+- Uses Google Fonts CDN links for DM Sans, Inter, JetBrains Mono (demo convenience — the theme self-hosts fonts).
 - Placeholder images use inline SVG or `data:` URIs. No external image dependencies.
 - Rebuild after each block is completed — add the new block's section to `demo.html`.
 
 ---
 
-## 11. Context
+## 12. Context
 
 Style definition (tokens, aesthetic rules, motion, block inventory) lives in **CONTEXT.md**. This file is the scaffold contract. Both required.
