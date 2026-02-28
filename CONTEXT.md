@@ -1,7 +1,7 @@
-# CONTEXT.md — Alpacode Blocks Style Definition
+# CONTEXT.md — Alpacode Style Definition
 
 > Design tokens, aesthetic rules, motion personality, and block inventory.
-> This file defines the visual identity of the plugin. CLAUDE.md defines how to build it.
+> This file defines the visual identity of the theme. CLAUDE.md defines how to build it.
 
 ---
 
@@ -61,7 +61,7 @@ Colors are used sparingly. The accent exists to mark interactive elements and cr
 - Body font for paragraph text, descriptions, form labels. Weight: 400 (regular), 500 (medium for emphasis).
 - Monospace font for: eyebrow text, category labels, counter values, navigation item numbers, stat suffixes, code-like metadata. This is the signature typographic accent — it signals precision and structure. Weight: 400.
 - Headings are always `--ac-font-display`. Never use display font for body text.
-- Line height: headings 1.05–1.15, body 1.6–1.7, mono accents 1.2–1.4.
+- Line height: headings 1.15–1.2, body 1.6–1.7, mono accents 1.2–1.4.
 - Letter spacing: headings tight (`-0.02em`), mono accents wide (`0.12em`), body normal.
 
 **Type Scale (fluid clamp):**
@@ -153,7 +153,7 @@ These rules define the visual language. They are **invariant** — they stay the
 ### 3.2 Typographic Hierarchy
 
 - **Eyebrow:** Monospace, `--ac-text-sm`, uppercase, letter-spacing `0.12em`, `--ac-color-text-muted`. No decorative line before it (unlike the Cesana editorial style). Just the text, letting the typography and spacing do the work.
-- **Section title:** Display font, `--ac-text-3xl` to `--ac-text-4xl`, weight 500, `--ac-color-text`, tight line-height (1.05), tight letter-spacing (-0.02em). Left-aligned.
+- **Section title:** Display font, `--ac-text-3xl` to `--ac-text-4xl`, weight 500, `--ac-color-text`, line-height 1.15, tight letter-spacing (-0.02em). Left-aligned.
 - **Section subtitle:** Body font, `--ac-text-base`, `--ac-color-text-muted`. Directly under title with minimal gap (`--ac-space-sm`).
 - **Component title:** Display font, `--ac-text-xl`, weight 500.
 - **Body text:** Body font, `--ac-text-base`, weight 400, line-height 1.65.
@@ -214,6 +214,7 @@ Motion is **precise and mechanical** — not bouncy, not elastic, not playful. M
 
 **FAQ/Accordion:**
 - Hairline border between items. Trigger is full-width, left-aligned question text + minimal `+` icon (1px strokes, rotates to `−`). No background change on open.
+- Panel animation uses `grid-template-rows: 0fr → 1fr` (GPU-accelerated, adapts to content height). Never `max-height` — it's janky and requires a hardcoded ceiling.
 
 **Hero Banner:**
 - Full-height or near-full (`90vh`). Overlay is a flat dark gradient (`--ac-color-primary-dark` at 70–85% opacity), not complex multi-stop.
@@ -323,7 +324,7 @@ When `prefers-reduced-motion: reduce`:
 - All `data-ac-parallax`: disabled, `transform: none !important`.
 - All `data-ac-magnetic`: disabled.
 - Carousel transitions: instant (no crossfade duration).
-- FAQ accordion: instant open/close (no max-height transition).
+- FAQ accordion: instant open/close (no grid-template-rows transition).
 - Counter: show final value immediately.
 - All `transition` and `animation` properties: `none`.
 
