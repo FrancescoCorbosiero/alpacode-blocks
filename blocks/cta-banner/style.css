@@ -1,0 +1,76 @@
+/**
+ * alpacode/cta-banner — Frontend Styles
+ */
+
+.ac-cta-banner {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface-alt);
+}
+
+.ac-cta-banner--dark {
+    background: var(--ac-color-primary);
+    color: var(--ac-color-text-on-dark);
+}
+
+.ac-cta-banner__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-cta-banner__content {
+    max-width: 680px;
+}
+
+.ac-cta-banner__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-cta-banner--dark .ac-cta-banner__eyebrow {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-cta-banner__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ac-cta-banner__desc {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-lg);
+    color: var(--ac-color-text-muted);
+    line-height: 1.6;
+    margin-top: var(--ac-space-md);
+}
+
+.ac-cta-banner--dark .ac-cta-banner__desc {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-cta-banner__actions {
+    display: flex;
+    gap: var(--ac-space-md);
+    align-items: center;
+    margin-top: var(--ac-space-2xl);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .ac-cta-banner__actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-cta-banner {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
+}
