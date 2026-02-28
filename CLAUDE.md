@@ -54,6 +54,7 @@ alpacode-blocks/
 │       ├── editor.css                # Editor-only (optional)
 │       └── view.js                   # Interactivity API — interactive widgets only (optional)
 ├── snippets.html                     # Copy-paste reference for WP code editor
+├── demo.html                         # Standalone vanilla HTML/CSS showcase of all blocks (no WP required)
 ├── CLAUDE.md                         # This file — scaffold contract
 └── CONTEXT.md                        # Style definition — design tokens, aesthetic rules, block inventory
 ```
@@ -387,6 +388,26 @@ Themes override any token via their own `theme.json`. Overrides cascade automati
 
 ---
 
-## 10. Context
+## 10. demo.html — Standalone Showcase
+
+A self-contained vanilla HTML file that demonstrates every block visually without requiring WordPress. Opens directly in a browser.
+
+**Rules:**
+
+- Single file: all CSS inline in `<style>`, all JS inline in `<script>`.
+- Uses the same design tokens (hardcoded values matching `tokens.css` defaults).
+- Follows all CONTEXT.md aesthetic rules: zero border-radius, hairline dividers, monospace accents, architectural whitespace.
+- Each block section is labeled with its `alpacode/{slug}` name.
+- Interactive blocks include working vanilla JS (accordion toggle, carousel crossfade, counter animation, form validation).
+- Animations use the same `data-ac-*` attributes with a minimal IntersectionObserver implementation.
+- Includes `prefers-reduced-motion` support.
+- Responsive: works at desktop, tablet, and mobile widths.
+- Uses Google Fonts CDN links for DM Sans, Inter, JetBrains Mono (demo convenience — the plugin self-hosts fonts).
+- Placeholder images use inline SVG or `data:` URIs. No external image dependencies.
+- Rebuild after each block is completed — add the new block's section to `demo.html`.
+
+---
+
+## 11. Context
 
 Style definition (tokens, aesthetic rules, motion, block inventory) lives in **CONTEXT.md**. This file is the scaffold contract. Both required.
