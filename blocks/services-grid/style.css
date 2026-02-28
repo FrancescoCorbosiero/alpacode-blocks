@@ -1,0 +1,147 @@
+/**
+ * alpacode/services-grid — Frontend Styles
+ */
+
+.ac-services-grid {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-services-grid--dark {
+    background: var(--ac-color-primary);
+    color: var(--ac-color-text-on-dark);
+}
+
+/* ── Header ── */
+
+.ac-services-grid__header {
+    margin-bottom: var(--ac-space-3xl);
+}
+
+.ac-services-grid__header-container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-services-grid__eyebrow {
+    display: block;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-services-grid--dark .ac-services-grid__eyebrow {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-services-grid__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-3xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ac-services-grid__subtitle {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    margin-top: var(--ac-space-sm);
+    max-width: 600px;
+}
+
+.ac-services-grid--dark .ac-services-grid__subtitle {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+/* ── Grid ── */
+
+.ac-services-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ac-grid-columns, 3), 1fr);
+    gap: 0;
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+    border-top: 1px solid var(--ac-color-border);
+    border-left: 1px solid var(--ac-color-border);
+}
+
+.ac-services-grid--dark .ac-services-grid__grid {
+    border-color: var(--ac-color-primary-light);
+}
+
+/* ── Items ── */
+
+.ac-services-grid__item {
+    padding: var(--ac-space-2xl);
+    border-right: 1px solid var(--ac-color-border);
+    border-bottom: 1px solid var(--ac-color-border);
+}
+
+.ac-services-grid--dark .ac-services-grid__item {
+    border-color: var(--ac-color-primary-light);
+}
+
+.ac-services-grid__number {
+    display: block;
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    color: var(--ac-color-text-faint);
+    letter-spacing: 0.12em;
+    margin-bottom: var(--ac-space-lg);
+}
+
+.ac-services-grid--dark .ac-services-grid__number {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+.ac-services-grid__item-title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-xl);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 var(--ac-space-sm);
+    transition: color 300ms var(--ac-ease-out);
+}
+
+.ac-services-grid__item:hover .ac-services-grid__item-title {
+    color: var(--ac-color-accent);
+}
+
+.ac-services-grid__item-desc {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.ac-services-grid--dark .ac-services-grid__item-desc {
+    color: var(--ac-color-text-on-dark-muted);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .ac-services-grid__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .ac-services-grid__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ac-services-grid__item {
+        padding: var(--ac-space-xl);
+    }
+}
+
+/* ── Below fold ── */
+
+.ac-services-grid {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
