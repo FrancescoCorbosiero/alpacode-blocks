@@ -1,0 +1,67 @@
+/**
+ * alpacode/back-to-top — Frontend Styles
+ */
+
+.ac-back-to-top {
+    position: fixed;
+    bottom: var(--ac-space-xl);
+    z-index: var(--ac-z-fixed);
+    width: 44px;
+    height: 44px;
+    background: var(--ac-color-primary);
+    color: var(--ac-color-text-on-dark);
+    border: 1px solid var(--ac-color-primary-light);
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition:
+        opacity 400ms var(--ac-ease-out),
+        transform 400ms var(--ac-ease-out),
+        background-color 200ms var(--ac-ease-out);
+}
+
+.ac-back-to-top--right {
+    right: var(--ac-space-xl);
+}
+
+.ac-back-to-top--left {
+    left: var(--ac-space-xl);
+}
+
+.ac-back-to-top--visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.ac-back-to-top:hover {
+    background: var(--ac-color-primary-light);
+}
+
+.ac-back-to-top:focus-visible {
+    outline: 1px solid var(--ac-color-accent);
+    outline-offset: 2px;
+}
+
+.ac-back-to-top svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .ac-back-to-top {
+        transition: opacity 400ms var(--ac-ease-out),
+            background-color 200ms var(--ac-ease-out);
+        transform: none;
+    }
+
+    .ac-back-to-top--visible {
+        transform: none;
+    }
+}

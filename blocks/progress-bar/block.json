@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/progress-bar",
+    "version": "1.0.0",
+    "title": "Progress Bar",
+    "category": "alpacode",
+    "icon": "minus",
+    "description": "Animated horizontal progress bar with label and percentage.",
+    "keywords": ["progress", "bar", "skill", "percentage"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "items": [
+                { "label": "Strategy", "value": 85 },
+                { "label": "Development", "value": 92 },
+                { "label": "Design", "value": 78 }
+            ]
+        }
+    }
+}

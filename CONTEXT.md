@@ -246,8 +246,29 @@ Core blocks to implement. All follow CLAUDE.md scaffold pattern.
 | Image + Text | `alpacode/image-text` | No | No |
 | Logo Strip | `alpacode/logo-strip` | No | No |
 | Divider | `alpacode/divider` | No | No |
+| Team Grid | `alpacode/team-grid` | No | No |
+| Pricing Table | `alpacode/pricing-table` | No | No |
+| Timeline | `alpacode/timeline` | No | No |
+| Portfolio Grid | `alpacode/portfolio-grid` | No | No |
+| Marquee | `alpacode/marquee` | No | No |
+| Video Hero | `alpacode/video-hero` | No | No |
+| Tabs Panel | `alpacode/tabs-panel` | Yes | Yes |
+| Progress Bar | `alpacode/progress-bar` | No (widget) | No |
+| Notice Bar | `alpacode/notice-bar` | Yes (widget, dismiss) | Yes |
+| Back to Top | `alpacode/back-to-top` | Yes (widget, scroll) | Yes |
 
 **Note:** This is a generic library. Block content (titles, descriptions, sample data) in `example` attributes and `snippets.html` should use neutral placeholder text — not tied to any industry. Use: "Precision in every detail", "Built to last", "Trusted by 500+ companies", etc.
+
+### Global Loaders & Utilities
+
+Not blocks — global CSS/JS utilities loaded site-wide:
+
+| Utility | Files | Description |
+|---|---|---|
+| Scroll Progress | `loaders.css` + `loaders.js` | Thin accent bar at viewport top showing page scroll percentage |
+| Preloader | `loaders.css` + `loaders.js` | Minimal dark overlay with animated bar, auto-hides on load |
+| Skeleton Shimmer | `loaders.css` | CSS utility classes (`.ac-skeleton--*`) for loading placeholders |
+| Page Transition | `loaders.css` + `loaders.js` | Fade overlay on internal link navigation |
 
 ---
 

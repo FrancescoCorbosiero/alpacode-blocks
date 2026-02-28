@@ -1,0 +1,178 @@
+/**
+ * Alpacode Blocks — Loaders & Utilities
+ * Scroll progress, preloader, skeleton shimmer, page transition.
+ */
+
+/* ── Scroll Progress ── */
+
+.ac-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--ac-color-accent);
+    z-index: var(--ac-z-fixed);
+    pointer-events: none;
+    transition: none;
+    transform-origin: left;
+}
+
+/* ── Preloader ── */
+
+.ac-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ac-color-primary);
+    z-index: var(--ac-z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 500ms var(--ac-ease-precise);
+}
+
+.ac-preloader--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ac-preloader__bar {
+    width: 60px;
+    height: 2px;
+    background: var(--ac-color-primary-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.ac-preloader__bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ac-color-accent);
+    animation: ac-preloader-slide 1s var(--ac-ease-in-out) infinite;
+}
+
+@keyframes ac-preloader-slide {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.ac-preloader__text {
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ac-color-text-on-dark-muted);
+    margin-top: var(--ac-space-md);
+}
+
+/* ── Skeleton Shimmer ── */
+
+.ac-skeleton {
+    background: var(--ac-color-border);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.ac-skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--ac-color-border-subtle) 50%,
+        transparent 100%
+    );
+    animation: ac-shimmer 1.5s var(--ac-ease-linear) infinite;
+}
+
+@keyframes ac-shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.ac-skeleton--text {
+    height: 14px;
+    width: 100%;
+    margin-bottom: var(--ac-space-sm);
+}
+
+.ac-skeleton--text-short {
+    width: 60%;
+}
+
+.ac-skeleton--heading {
+    height: 24px;
+    width: 40%;
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-skeleton--image {
+    height: 200px;
+    width: 100%;
+}
+
+.ac-skeleton--avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.ac-skeleton--button {
+    width: 120px;
+    height: 40px;
+}
+
+/* ── Page Transition ── */
+
+.ac-page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ac-color-primary);
+    z-index: var(--ac-z-modal);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms var(--ac-ease-precise);
+}
+
+.ac-page-transition--active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .ac-preloader__bar::after {
+        animation: none;
+        transform: none;
+        width: 100%;
+    }
+
+    .ac-skeleton::after {
+        animation: none;
+        background: transparent;
+    }
+
+    .ac-page-transition {
+        transition: none;
+    }
+
+    .ac-preloader {
+        transition: none;
+    }
+}

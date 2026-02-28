@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/notice-bar",
+    "version": "1.0.0",
+    "title": "Notice Bar",
+    "category": "alpacode",
+    "icon": "megaphone",
+    "description": "Dismissible top banner for announcements and alerts.",
+    "keywords": ["notice", "bar", "banner", "alert", "announcement"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "text": { "type": "string", "default": "" },
+        "linkText": { "type": "string", "default": "" },
+        "linkUrl": { "type": "string", "default": "" },
+        "variant": { "type": "string", "default": "dark" },
+        "dismissible": { "type": "boolean", "default": true }
+    },
+    "supports": {
+        "align": ["full"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "text": "New release available — improved performance and features.",
+            "linkText": "Learn more",
+            "linkUrl": "#",
+            "variant": "dark",
+            "dismissible": true
+        }
+    }
+}

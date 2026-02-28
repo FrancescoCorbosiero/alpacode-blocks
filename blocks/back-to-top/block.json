@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/back-to-top",
+    "version": "1.0.0",
+    "title": "Back to Top",
+    "category": "alpacode",
+    "icon": "arrow-up-alt",
+    "description": "Fixed scroll-to-top button that appears after scrolling.",
+    "keywords": ["back", "top", "scroll", "button"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "threshold": { "type": "number", "default": 400 },
+        "position": { "type": "string", "default": "right" }
+    },
+    "supports": {
+        "html": false,
+        "spacing": { "margin": false, "padding": false }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "threshold": 400,
+            "position": "right"
+        }
+    }
+}
