@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/stats-counter",
+    "version": "1.0.0",
+    "title": "Stats Counter",
+    "category": "alpacode",
+    "icon": "chart-bar",
+    "description": "Oversized monospace counter values with labels. Hairline-divided grid layout.",
+    "keywords": ["stats", "counter", "numbers", "metrics"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        },
+        "variant": {
+            "type": "string",
+            "default": "light"
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "items": [
+                { "value": 500, "suffix": "+", "label": "Projects Delivered" },
+                { "value": 98, "suffix": "%", "label": "Client Retention" },
+                { "value": 12, "suffix": "yr", "label": "Industry Experience" },
+                { "value": 24, "suffix": "/7", "label": "Dedicated Support" }
+            ]
+        }
+    }
+}
