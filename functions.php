@@ -34,9 +34,7 @@ add_filter('block_categories_all', function ($categories) {
     return $categories;
 });
 
-/**
- * Register all blocks by scanning blocks/*/block.json.
- */
+// Register all blocks by scanning blocks/block.json files.
 add_action('init', function () {
     $block_dirs = glob(AC_PATH . '/blocks/*/block.json') ?: [];
 
