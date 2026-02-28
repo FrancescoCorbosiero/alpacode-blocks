@@ -1,0 +1,86 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/hero-banner",
+    "version": "1.0.0",
+    "title": "Hero Banner",
+    "category": "alpacode",
+    "icon": "cover-image",
+    "description": "Full-height hero with background slides, overlay, and call-to-action. Crossfade transitions.",
+    "keywords": ["hero", "banner", "header", "fullscreen", "slider"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "subtitle": {
+            "type": "string",
+            "default": ""
+        },
+        "ctaText": {
+            "type": "string",
+            "default": ""
+        },
+        "ctaUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 75
+        },
+        "height": {
+            "type": "string",
+            "default": "90vh"
+        },
+        "slides": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        },
+        "autoplay": {
+            "type": "boolean",
+            "default": true
+        },
+        "autoplaySpeed": {
+            "type": "number",
+            "default": 6000
+        }
+    },
+    "supports": {
+        "align": ["full"],
+        "html": false,
+        "color": {
+            "background": false,
+            "text": true
+        },
+        "spacing": {
+            "padding": false,
+            "margin": false
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "eyebrow": "Established 2024",
+            "title": "Built to last",
+            "subtitle": "Precision engineering meets timeless design. Every detail considered.",
+            "ctaText": "Explore",
+            "ctaUrl": "#",
+            "overlayOpacity": 75,
+            "height": "90vh",
+            "slides": []
+        }
+    }
+}
