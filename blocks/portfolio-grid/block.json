@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/portfolio-grid",
+    "version": "1.0.0",
+    "title": "Portfolio Grid",
+    "category": "alpacode",
+    "icon": "format-gallery",
+    "description": "Image gallery grid with titles and categories. Hover reveals caption overlay.",
+    "keywords": ["portfolio", "gallery", "work", "projects", "images"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": { "type": "string", "default": "" },
+        "title": { "type": "string", "default": "" },
+        "columns": { "type": "number", "default": 3 },
+        "items": { "type": "array", "default": [], "items": { "type": "object" } }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": true, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Work",
+            "title": "Selected projects",
+            "columns": 3,
+            "items": [
+                { "title": "Project Alpha", "category": "Design", "imageId": 0, "imageUrl": "", "url": "#" },
+                { "title": "Project Beta", "category": "Engineering", "imageId": 0, "imageUrl": "", "url": "#" },
+                { "title": "Project Gamma", "category": "Strategy", "imageId": 0, "imageUrl": "", "url": "#" }
+            ]
+        }
+    }
+}

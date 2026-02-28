@@ -1,0 +1,57 @@
+/**
+ * alpacode/marquee — Frontend Styles
+ */
+
+.ac-marquee {
+    overflow: hidden;
+    padding: var(--ac-space-xl) 0;
+    background: var(--ac-color-surface);
+    border-top: 1px solid var(--ac-color-border);
+    border-bottom: 1px solid var(--ac-color-border);
+}
+
+.ac-marquee--dark {
+    background: var(--ac-color-primary);
+    border-color: var(--ac-color-primary-light);
+    color: var(--ac-color-text-on-dark);
+}
+
+.ac-marquee__track {
+    display: flex;
+    white-space: nowrap;
+    animation: ac-marquee-scroll var(--ac-marquee-speed, 40s) linear infinite;
+    animation-direction: var(--ac-marquee-direction, normal);
+}
+
+.ac-marquee__content {
+    flex-shrink: 0;
+    padding-right: var(--ac-space-xl);
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-4xl);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ac-color-text-faint);
+}
+
+.ac-marquee--dark .ac-marquee__content {
+    color: var(--ac-color-primary-light);
+}
+
+.ac-marquee--mono .ac-marquee__content {
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-sm);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+@keyframes ac-marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ac-marquee__track { animation: none; }
+}

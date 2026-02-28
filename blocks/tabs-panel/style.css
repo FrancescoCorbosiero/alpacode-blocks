@@ -1,0 +1,68 @@
+/**
+ * alpacode/tabs-panel — Frontend Styles
+ */
+
+.ac-tabs-panel { padding: var(--ac-space-section) 0; background: var(--ac-color-surface); }
+.ac-tabs-panel__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+
+.ac-tabs-panel__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--ac-color-border);
+    overflow-x: auto;
+}
+
+.ac-tabs-panel__tab {
+    padding: var(--ac-space-md) var(--ac-space-xl);
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ac-color-text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 300ms var(--ac-ease-out), border-color 300ms var(--ac-ease-out);
+    margin-bottom: -1px;
+}
+
+.ac-tabs-panel__tab:hover { color: var(--ac-color-text); }
+
+.ac-tabs-panel__tab--active {
+    color: var(--ac-color-text);
+    border-bottom-color: var(--ac-color-accent);
+}
+
+.ac-tabs-panel__tab:focus-visible { outline: 1px solid var(--ac-color-accent); outline-offset: -2px; }
+
+.ac-tabs-panel__panels { padding-top: var(--ac-space-2xl); }
+
+.ac-tabs-panel__panel {
+    display: none;
+}
+
+.ac-tabs-panel__panel--active {
+    display: block;
+}
+
+.ac-tabs-panel__panel-title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-2xl);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 var(--ac-space-md);
+}
+
+.ac-tabs-panel__panel-content {
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    line-height: 1.65;
+    max-width: var(--ac-max-width-narrow);
+    margin: 0;
+}
+
+.ac-tabs-panel { content-visibility: auto; contain-intrinsic-size: auto 400px; }

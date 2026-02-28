@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/marquee",
+    "version": "1.0.0",
+    "title": "Marquee",
+    "category": "alpacode",
+    "icon": "controls-play",
+    "description": "Infinite scrolling text strip. Monospace or display type, configurable speed and direction.",
+    "keywords": ["marquee", "ticker", "scroll", "text", "infinite"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "text": { "type": "string", "default": "" },
+        "separator": { "type": "string", "default": "—" },
+        "speed": { "type": "number", "default": 40 },
+        "direction": { "type": "string", "default": "left" },
+        "variant": { "type": "string", "default": "light" },
+        "fontSize": { "type": "string", "default": "display" }
+    },
+    "supports": {
+        "align": ["full"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": false, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "text": "Precision — Design — Engineering — Strategy",
+            "separator": "—",
+            "speed": 40,
+            "variant": "dark",
+            "fontSize": "display"
+        }
+    }
+}

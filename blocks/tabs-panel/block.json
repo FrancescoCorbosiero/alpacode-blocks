@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/tabs-panel",
+    "version": "1.0.0",
+    "title": "Tabs Panel",
+    "category": "alpacode",
+    "icon": "table-row-after",
+    "description": "Tabbed content panels with hairline indicators. Monospace tab labels.",
+    "keywords": ["tabs", "panel", "toggle", "content", "switch"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "items": { "type": "array", "default": [], "items": { "type": "object" } }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": true, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "viewScriptModule": "file:./view.js",
+    "example": {
+        "attributes": {
+            "items": [
+                { "label": "Overview", "title": "High-level perspective", "content": "We start every project by understanding the full picture — goals, constraints, and opportunities." },
+                { "label": "Process", "title": "How we deliver", "content": "A structured approach that prioritizes clarity at every stage, from discovery to deployment." },
+                { "label": "Results", "title": "Measurable outcomes", "content": "Quantifiable improvements in performance, engagement, and user satisfaction." }
+            ]
+        }
+    }
+}
