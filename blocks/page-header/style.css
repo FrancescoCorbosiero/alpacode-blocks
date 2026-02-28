@@ -1,0 +1,49 @@
+/**
+ * alpacode/page-header — Frontend Styles
+ */
+
+.ac-page-header {
+    padding: var(--ac-space-section) 0 var(--ac-space-3xl);
+    background: var(--ac-color-primary);
+    color: var(--ac-color-text-on-dark);
+}
+
+.ac-page-header__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-page-header__eyebrow {
+    display: block;
+    color: var(--ac-color-text-on-dark-muted);
+    margin-bottom: var(--ac-space-md);
+}
+
+.ac-page-header__title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-4xl);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 800px;
+}
+
+.ac-page-header__desc {
+    font-family: var(--ac-font-body);
+    font-size: var(--ac-text-lg);
+    color: var(--ac-color-text-on-dark-muted);
+    line-height: 1.6;
+    margin-top: var(--ac-space-md);
+    max-width: 600px;
+}
+
+.ac-page-header__border {
+    max-width: var(--ac-max-width);
+    margin: var(--ac-space-3xl) auto 0;
+    padding: 0 var(--ac-space-xl);
+    height: 1px;
+    background: var(--ac-color-primary-light);
+    transform-origin: left;
+}
