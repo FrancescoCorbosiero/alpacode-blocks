@@ -1,0 +1,84 @@
+/**
+ * alpacode/timeline — Frontend Styles
+ */
+
+.ac-timeline {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-timeline__header { margin-bottom: var(--ac-space-3xl); }
+.ac-timeline__header-container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+.ac-timeline__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+.ac-timeline__title { font-family: var(--ac-font-display); font-size: var(--ac-text-3xl); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
+
+.ac-timeline__list {
+    max-width: var(--ac-max-width-narrow);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-timeline__item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--ac-space-lg);
+    padding-bottom: var(--ac-space-2xl);
+}
+
+.ac-timeline__item:last-child { padding-bottom: 0; }
+.ac-timeline__item:last-child .ac-timeline__line { display: none; }
+
+.ac-timeline__marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.ac-timeline__dot {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--ac-color-border);
+    background: var(--ac-color-surface);
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.ac-timeline__item:first-child .ac-timeline__dot {
+    background: var(--ac-color-accent);
+    border-color: var(--ac-color-accent);
+}
+
+.ac-timeline__line {
+    width: 1px;
+    flex: 1;
+    background: var(--ac-color-border);
+    margin-top: var(--ac-space-sm);
+}
+
+.ac-timeline__label {
+    display: block;
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ac-color-text-faint);
+    margin-bottom: var(--ac-space-xs);
+}
+
+.ac-timeline__step-title {
+    font-family: var(--ac-font-display);
+    font-size: var(--ac-text-xl);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 var(--ac-space-sm);
+}
+
+.ac-timeline__desc {
+    font-size: var(--ac-text-base);
+    color: var(--ac-color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.ac-timeline { content-visibility: auto; contain-intrinsic-size: auto 600px; }

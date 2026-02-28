@@ -1,0 +1,46 @@
+/**
+ * alpacode/team-grid — Frontend Styles
+ */
+
+.ac-team-grid {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+}
+
+.ac-team-grid__header { margin-bottom: var(--ac-space-3xl); }
+.ac-team-grid__header-container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+.ac-team-grid__eyebrow { display: block; margin-bottom: var(--ac-space-md); }
+.ac-team-grid__title { font-family: var(--ac-font-display); font-size: var(--ac-text-3xl); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
+.ac-team-grid__subtitle { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-top: var(--ac-space-sm); max-width: 600px; }
+
+.ac-team-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ac-grid-columns, 4), 1fr);
+    gap: 0;
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+    border-top: 1px solid var(--ac-color-border);
+    border-left: 1px solid var(--ac-color-border);
+}
+
+.ac-team-grid__item {
+    padding: var(--ac-space-xl);
+    border-right: 1px solid var(--ac-color-border);
+    border-bottom: 1px solid var(--ac-color-border);
+}
+
+.ac-team-grid__photo { margin-bottom: var(--ac-space-lg); overflow: hidden; }
+.ac-team-grid__img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; filter: grayscale(1); transition: filter 500ms var(--ac-ease-out); }
+.ac-team-grid__item:hover .ac-team-grid__img { filter: grayscale(0); }
+.ac-team-grid__photo-placeholder { width: 100%; aspect-ratio: 1; background: var(--ac-color-surface-alt); border: 1px solid var(--ac-color-border-subtle); }
+
+.ac-team-grid__name { font-family: var(--ac-font-display); font-size: var(--ac-text-lg); font-weight: 500; margin: 0 0 var(--ac-space-xs); transition: color 300ms var(--ac-ease-out); }
+.ac-team-grid__item:hover .ac-team-grid__name { color: var(--ac-color-accent); }
+.ac-team-grid__role { display: block; font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ac-color-text-muted); }
+.ac-team-grid__bio { font-size: var(--ac-text-sm); color: var(--ac-color-text-muted); line-height: 1.6; margin-top: var(--ac-space-sm); }
+
+@media (max-width: 768px) { .ac-team-grid__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .ac-team-grid__grid { grid-template-columns: 1fr; } }
+
+.ac-team-grid { content-visibility: auto; contain-intrinsic-size: auto 600px; }

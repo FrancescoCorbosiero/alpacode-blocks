@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/pricing-table",
+    "version": "1.0.0",
+    "title": "Pricing Table",
+    "category": "alpacode",
+    "icon": "money-alt",
+    "description": "Pricing comparison columns with feature lists. Hairline-bordered, zero-radius layout.",
+    "keywords": ["pricing", "plans", "table", "comparison", "cost"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": { "type": "string", "default": "" },
+        "title": { "type": "string", "default": "" },
+        "items": { "type": "array", "default": [], "items": { "type": "object" } }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": true, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Pricing",
+            "title": "Choose your plan",
+            "items": [
+                { "name": "Essential", "price": "2,500", "period": "/mo", "description": "For focused projects", "features": "Core design\nResponsive build\nOne revision round", "ctaText": "Get Started", "ctaUrl": "#", "highlighted": false },
+                { "name": "Professional", "price": "5,000", "period": "/mo", "description": "For growing teams", "features": "Everything in Essential\nPriority support\nMonthly strategy call\nAnalytics dashboard", "ctaText": "Get Started", "ctaUrl": "#", "highlighted": true },
+                { "name": "Enterprise", "price": "Custom", "period": "", "description": "For complex requirements", "features": "Everything in Professional\nDedicated team\nCustom integrations\n24/7 support\nSLA guarantee", "ctaText": "Contact Us", "ctaUrl": "#", "highlighted": false }
+            ]
+        }
+    }
+}
