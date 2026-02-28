@@ -332,6 +332,139 @@
         }
         .ac-logo-strip__item:hover .ac-logo-strip__logo-placeholder { opacity: 1; }
 
+        /* ── TEAM GRID ── */
+        .ac-team-grid { padding: var(--ac-space-section) 0; }
+        .ac-team-grid__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-team-grid__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-team-grid__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--ac-color-border); }
+        .ac-team-grid__member { border: 1px solid var(--ac-color-border); margin: -1px; }
+        .ac-team-grid__photo { aspect-ratio: 3/4; background: var(--ac-color-border); filter: grayscale(1); transition: filter 600ms var(--ac-ease-out); }
+        .ac-team-grid__member:hover .ac-team-grid__photo { filter: grayscale(0); }
+        .ac-team-grid__info { padding: var(--ac-space-lg); }
+        .ac-team-grid__name { font-family: var(--ac-font-display); font-size: var(--ac-text-xl); font-weight: 500; margin: 0 0 var(--ac-space-xs); }
+        .ac-team-grid__role { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ac-color-text-muted); margin: 0; }
+
+        /* ── PRICING TABLE ── */
+        .ac-pricing-table { padding: var(--ac-space-section) 0; background: var(--ac-color-surface-alt); }
+        .ac-pricing-table__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-pricing-table__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-pricing-table__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ac-color-border); }
+        .ac-pricing-table__plan { border: 1px solid var(--ac-color-border); margin: -1px; padding: var(--ac-space-2xl); display: flex; flex-direction: column; }
+        .ac-pricing-table__plan--highlighted { background: var(--ac-color-primary); color: var(--ac-color-text-on-dark); }
+        .ac-pricing-table__plan-name { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ac-color-text-muted); margin-bottom: var(--ac-space-md); }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__plan-name { color: var(--ac-color-text-on-dark-muted); }
+        .ac-pricing-table__price { font-family: var(--ac-font-mono); font-size: var(--ac-text-counter); font-weight: 400; line-height: 1; margin-bottom: var(--ac-space-xs); }
+        .ac-pricing-table__price-suffix { font-size: var(--ac-text-sm); color: var(--ac-color-text-muted); font-family: var(--ac-font-mono); }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__price-suffix { color: var(--ac-color-text-on-dark-muted); }
+        .ac-pricing-table__desc { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); margin-bottom: var(--ac-space-xl); line-height: 1.6; }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__desc { color: var(--ac-color-text-on-dark-muted); }
+        .ac-pricing-table__features { list-style: none; margin-bottom: var(--ac-space-2xl); flex: 1; }
+        .ac-pricing-table__feature { padding: var(--ac-space-sm) 0; border-bottom: 1px solid var(--ac-color-border); font-size: var(--ac-text-sm); }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__feature { border-color: var(--ac-color-primary-light); }
+        .ac-pricing-table__cta { display: inline-block; padding: 0.75rem 1.5rem; font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ac-color-border); color: var(--ac-color-text); transition: all 300ms var(--ac-ease-out); text-align: center; }
+        .ac-pricing-table__cta:hover { background: var(--ac-color-primary); color: var(--ac-color-surface); border-color: var(--ac-color-primary); }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__cta { border-color: var(--ac-color-text-on-dark); color: var(--ac-color-text-on-dark); }
+        .ac-pricing-table__plan--highlighted .ac-pricing-table__cta:hover { background: var(--ac-color-surface); color: var(--ac-color-primary); }
+
+        /* ── TIMELINE ── */
+        .ac-timeline { padding: var(--ac-space-section) 0; }
+        .ac-timeline__container { max-width: var(--ac-max-width-narrow); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-timeline__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-timeline__list { position: relative; padding-left: var(--ac-space-2xl); }
+        .ac-timeline__line { position: absolute; left: 5px; top: 0; width: 1px; height: 100%; background: var(--ac-color-border); }
+        .ac-timeline__item { position: relative; padding-bottom: var(--ac-space-3xl); }
+        .ac-timeline__item:last-child { padding-bottom: 0; }
+        .ac-timeline__dot { position: absolute; left: calc(-1 * var(--ac-space-2xl) + 1px); top: 6px; width: 10px; height: 10px; border: 1px solid var(--ac-color-border); background: var(--ac-color-surface); }
+        .ac-timeline__item:first-child .ac-timeline__dot { background: var(--ac-color-accent); border-color: var(--ac-color-accent); }
+        .ac-timeline__label { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ac-color-text-muted); margin-bottom: var(--ac-space-sm); }
+        .ac-timeline__title { font-family: var(--ac-font-display); font-size: var(--ac-text-xl); font-weight: 500; margin: 0 0 var(--ac-space-sm); }
+        .ac-timeline__desc { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; margin: 0; }
+
+        /* ── PORTFOLIO GRID ── */
+        .ac-portfolio-grid { padding: var(--ac-space-section) 0; background: var(--ac-color-surface-alt); }
+        .ac-portfolio-grid__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-portfolio-grid__header { margin-bottom: var(--ac-space-3xl); }
+        .ac-portfolio-grid__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ac-color-border); }
+        .ac-portfolio-grid__item { position: relative; aspect-ratio: 4/3; background: var(--ac-color-border); overflow: hidden; cursor: pointer; }
+        .ac-portfolio-grid__overlay { position: absolute; inset: 0; background: rgba(24,24,27,0.85); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--ac-space-xl); opacity: 0; transition: opacity 400ms var(--ac-ease-out); }
+        .ac-portfolio-grid__item:hover .ac-portfolio-grid__overlay { opacity: 1; }
+        .ac-portfolio-grid__category { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ac-color-text-on-dark-muted); margin-bottom: var(--ac-space-xs); }
+        .ac-portfolio-grid__title { font-family: var(--ac-font-display); font-size: var(--ac-text-xl); font-weight: 500; color: var(--ac-color-text-on-dark); margin: 0; }
+
+        /* ── MARQUEE ── */
+        .ac-marquee { padding: var(--ac-space-2xl) 0; border-top: 1px solid var(--ac-color-border); border-bottom: 1px solid var(--ac-color-border); overflow: hidden; }
+        .ac-marquee__track { display: flex; width: max-content; animation: ac-marquee-scroll 20s linear infinite; }
+        .ac-marquee__content { display: flex; align-items: center; gap: var(--ac-space-3xl); padding: 0 var(--ac-space-3xl); white-space: nowrap; }
+        .ac-marquee__item { font-family: var(--ac-font-display); font-size: var(--ac-text-3xl); font-weight: 500; letter-spacing: -0.02em; color: var(--ac-color-text-faint); }
+        .ac-marquee__separator { width: 6px; height: 6px; background: var(--ac-color-border); flex-shrink: 0; }
+        @keyframes ac-marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
+
+        /* ── VIDEO HERO ── */
+        .ac-video-hero { position: relative; min-height: 80vh; display: flex; align-items: center; overflow: hidden; }
+        .ac-video-hero__overlay { position: absolute; inset: 0; background: var(--ac-color-primary-dark); opacity: 0.8; z-index: 1; }
+        .ac-video-hero__poster { position: absolute; inset: 0; background: var(--ac-color-primary); z-index: 0; }
+        .ac-video-hero__content { position: relative; z-index: 2; max-width: var(--ac-max-width); margin: 0 auto; padding: var(--ac-space-4xl) var(--ac-space-xl); color: var(--ac-color-text-on-dark); }
+        .ac-video-hero__eyebrow { margin-bottom: var(--ac-space-md); }
+        .ac-video-hero__title { font-family: var(--ac-font-display); font-size: var(--ac-text-5xl); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 var(--ac-space-lg); color: var(--ac-color-text-on-dark); }
+        .ac-video-hero__subtitle { font-size: var(--ac-text-lg); color: var(--ac-color-text-on-dark-muted); line-height: 1.6; max-width: var(--ac-max-width-narrow); margin: 0; }
+
+        /* ── TABS PANEL ── */
+        .ac-tabs-panel { padding: var(--ac-space-section) 0; }
+        .ac-tabs-panel__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-tabs-panel__tabs { display: flex; border-bottom: 1px solid var(--ac-color-border); overflow-x: auto; }
+        .ac-tabs-panel__tab { padding: var(--ac-space-md) var(--ac-space-xl); font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ac-color-text-muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color 300ms var(--ac-ease-out), border-color 300ms var(--ac-ease-out); margin-bottom: -1px; }
+        .ac-tabs-panel__tab:hover { color: var(--ac-color-text); }
+        .ac-tabs-panel__tab--active { color: var(--ac-color-text); border-bottom-color: var(--ac-color-accent); }
+        .ac-tabs-panel__panels { padding-top: var(--ac-space-2xl); }
+        .ac-tabs-panel__panel { display: none; }
+        .ac-tabs-panel__panel--active { display: block; }
+        .ac-tabs-panel__panel-title { font-family: var(--ac-font-display); font-size: var(--ac-text-2xl); font-weight: 500; line-height: 1.15; margin: 0 0 var(--ac-space-md); }
+        .ac-tabs-panel__panel-content { font-size: var(--ac-text-base); color: var(--ac-color-text-muted); line-height: 1.65; max-width: var(--ac-max-width-narrow); margin: 0; }
+
+        /* ── PROGRESS BAR ── */
+        .ac-progress-bar { padding: var(--ac-space-section) 0; background: var(--ac-color-surface-alt); }
+        .ac-progress-bar__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-progress-bar__item { margin-bottom: var(--ac-space-xl); }
+        .ac-progress-bar__item:last-child { margin-bottom: 0; }
+        .ac-progress-bar__header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--ac-space-sm); }
+        .ac-progress-bar__label { font-family: var(--ac-font-mono); font-size: var(--ac-text-sm); letter-spacing: 0.08em; text-transform: uppercase; }
+        .ac-progress-bar__value { font-family: var(--ac-font-mono); font-size: var(--ac-text-sm); color: var(--ac-color-accent); }
+        .ac-progress-bar__track { height: 2px; background: var(--ac-color-border); position: relative; }
+        .ac-progress-bar__fill { height: 100%; background: var(--ac-color-accent); transition: width 1200ms var(--ac-ease-precise); }
+
+        /* ── NOTICE BAR ── */
+        .ac-notice-bar { width: 100%; }
+        .ac-notice-bar--dark { background: var(--ac-color-primary); color: var(--ac-color-text-on-dark); }
+        .ac-notice-bar__container { max-width: var(--ac-max-width); margin: 0 auto; padding: var(--ac-space-sm) var(--ac-space-xl); display: flex; align-items: center; justify-content: space-between; }
+        .ac-notice-bar__content { display: flex; align-items: center; gap: var(--ac-space-md); }
+        .ac-notice-bar__text { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+        .ac-notice-bar__link { font-family: var(--ac-font-mono); font-size: var(--ac-text-xs); text-decoration: underline; color: inherit; opacity: 0.8; }
+        .ac-notice-bar__link:hover { opacity: 1; }
+        .ac-notice-bar__close { background: none; border: none; color: inherit; cursor: pointer; opacity: 0.6; padding: var(--ac-space-xs); width: 20px; height: 20px; }
+        .ac-notice-bar__close:hover { opacity: 1; }
+
+        /* ── BACK TO TOP ── */
+        .ac-back-to-top { position: fixed; bottom: var(--ac-space-xl); right: var(--ac-space-xl); width: 44px; height: 44px; background: var(--ac-color-primary); color: var(--ac-color-text-on-dark); border: 1px solid var(--ac-color-primary-light); cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 400ms var(--ac-ease-out), transform 400ms var(--ac-ease-out), background 300ms var(--ac-ease-out); transform: translateY(8px); z-index: 500; }
+        .ac-back-to-top--visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .ac-back-to-top:hover { background: var(--ac-color-primary-light); }
+        .ac-back-to-top svg { width: 18px; height: 18px; }
+
+        /* ── SCROLL PROGRESS ── */
+        .ac-scroll-progress { position: fixed; top: 0; left: 0; width: 0; height: 2px; background: var(--ac-color-accent); z-index: 500; pointer-events: none; }
+
+        /* ── SKELETON SHIMMER ── */
+        .ac-skeleton-demo { padding: var(--ac-space-section) 0; }
+        .ac-skeleton-demo__container { max-width: var(--ac-max-width); margin: 0 auto; padding: 0 var(--ac-space-xl); }
+        .ac-skeleton-demo__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--ac-space-xl); }
+        .ac-skeleton-demo__card { padding: var(--ac-space-xl); border: 1px solid var(--ac-color-border); }
+        .ac-skeleton { background: var(--ac-color-border); position: relative; overflow: hidden; }
+        .ac-skeleton::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, var(--ac-color-border-subtle) 50%, transparent 100%); animation: ac-shimmer 1.5s linear infinite; }
+        @keyframes ac-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .ac-skeleton--image { height: 200px; width: 100%; margin-bottom: var(--ac-space-md); }
+        .ac-skeleton--heading { height: 24px; width: 40%; margin-bottom: var(--ac-space-md); }
+        .ac-skeleton--text { height: 14px; width: 100%; margin-bottom: var(--ac-space-sm); }
+        .ac-skeleton--text-short { width: 60%; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .ac-services-grid__grid { grid-template-columns: repeat(2, 1fr); }
@@ -342,6 +475,10 @@
             .ac-image-text__container { grid-template-columns: 1fr; }
             .ac-feature-columns__grid { grid-template-columns: 1fr; }
             .ac-logo-strip__grid { grid-template-columns: repeat(3, 1fr); }
+            .ac-team-grid__grid { grid-template-columns: repeat(2, 1fr); }
+            .ac-pricing-table__grid { grid-template-columns: 1fr; }
+            .ac-portfolio-grid__grid { grid-template-columns: repeat(2, 1fr); }
+            .ac-skeleton-demo__grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .ac-services-grid__grid { grid-template-columns: 1fr; }
@@ -350,10 +487,20 @@
             .ac-contact-form__form { grid-template-columns: 1fr; }
             .ac-cta-banner__actions { flex-direction: column; align-items: flex-start; }
             .ac-logo-strip__grid { grid-template-columns: repeat(2, 1fr); }
+            .ac-team-grid__grid { grid-template-columns: 1fr; }
+            .ac-portfolio-grid__grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="ac-scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="ac-back-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
 
     <!-- ════════════════════════════════════════════
          1. HERO BANNER
@@ -692,6 +839,365 @@
         <div class="ac-page-header__border" data-ac-line></div>
     </header>
 
+    <!-- ════════════════════════════════════════════
+         NOTICE BAR (widget — shown at section top)
+         ════════════════════════════════════════════ -->
+    <span class="demo-label demo-label--on-dark">alpacode/notice-bar</span>
+    <div class="ac-notice-bar ac-notice-bar--dark">
+        <div class="ac-notice-bar__container">
+            <div class="ac-notice-bar__content">
+                <span class="ac-notice-bar__text">New release available — improved performance and features.</span>
+                <a href="#" class="ac-notice-bar__link">Learn more</a>
+            </div>
+            <button class="ac-notice-bar__close" aria-label="Dismiss">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1">
+                    <line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         14. TEAM GRID
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/team-grid</span>
+    <section class="ac-team-grid" data-ac-reveal="up">
+        <div class="ac-team-grid__container">
+            <div class="ac-team-grid__header">
+                <span class="ac-eyebrow">The Team</span>
+                <h2 style="font-size: var(--ac-text-3xl); margin-top: var(--ac-space-sm);">People behind the work</h2>
+            </div>
+            <div class="ac-team-grid__grid" data-ac-stagger>
+                <div class="ac-team-grid__member">
+                    <div class="ac-team-grid__photo"></div>
+                    <div class="ac-team-grid__info">
+                        <h3 class="ac-team-grid__name">Alex Morgan</h3>
+                        <p class="ac-team-grid__role">Principal Director</p>
+                    </div>
+                </div>
+                <div class="ac-team-grid__member">
+                    <div class="ac-team-grid__photo"></div>
+                    <div class="ac-team-grid__info">
+                        <h3 class="ac-team-grid__name">Jordan Lee</h3>
+                        <p class="ac-team-grid__role">Lead Engineer</p>
+                    </div>
+                </div>
+                <div class="ac-team-grid__member">
+                    <div class="ac-team-grid__photo"></div>
+                    <div class="ac-team-grid__info">
+                        <h3 class="ac-team-grid__name">Sofia Reyes</h3>
+                        <p class="ac-team-grid__role">Design Director</p>
+                    </div>
+                </div>
+                <div class="ac-team-grid__member">
+                    <div class="ac-team-grid__photo"></div>
+                    <div class="ac-team-grid__info">
+                        <h3 class="ac-team-grid__name">David Kim</h3>
+                        <p class="ac-team-grid__role">Strategy Lead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         15. PRICING TABLE
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/pricing-table</span>
+    <section class="ac-pricing-table" data-ac-reveal="up">
+        <div class="ac-pricing-table__container">
+            <div class="ac-pricing-table__header">
+                <span class="ac-eyebrow">Pricing</span>
+                <h2 style="font-size: var(--ac-text-3xl); margin-top: var(--ac-space-sm);">Clear, honest pricing</h2>
+            </div>
+            <div class="ac-pricing-table__grid" data-ac-stagger>
+                <div class="ac-pricing-table__plan">
+                    <span class="ac-pricing-table__plan-name">Starter</span>
+                    <div class="ac-pricing-table__price">$29<span class="ac-pricing-table__price-suffix">/mo</span></div>
+                    <p class="ac-pricing-table__desc">For individuals and small projects.</p>
+                    <ul class="ac-pricing-table__features">
+                        <li class="ac-pricing-table__feature">Up to 3 projects</li>
+                        <li class="ac-pricing-table__feature">Basic analytics</li>
+                        <li class="ac-pricing-table__feature">Email support</li>
+                    </ul>
+                    <a href="#" class="ac-pricing-table__cta">Get Started</a>
+                </div>
+                <div class="ac-pricing-table__plan ac-pricing-table__plan--highlighted">
+                    <span class="ac-pricing-table__plan-name">Professional</span>
+                    <div class="ac-pricing-table__price">$79<span class="ac-pricing-table__price-suffix">/mo</span></div>
+                    <p class="ac-pricing-table__desc">For growing teams and businesses.</p>
+                    <ul class="ac-pricing-table__features">
+                        <li class="ac-pricing-table__feature">Unlimited projects</li>
+                        <li class="ac-pricing-table__feature">Advanced analytics</li>
+                        <li class="ac-pricing-table__feature">Priority support</li>
+                        <li class="ac-pricing-table__feature">Custom integrations</li>
+                    </ul>
+                    <a href="#" class="ac-pricing-table__cta">Get Started</a>
+                </div>
+                <div class="ac-pricing-table__plan">
+                    <span class="ac-pricing-table__plan-name">Enterprise</span>
+                    <div class="ac-pricing-table__price">$199<span class="ac-pricing-table__price-suffix">/mo</span></div>
+                    <p class="ac-pricing-table__desc">For large organizations at scale.</p>
+                    <ul class="ac-pricing-table__features">
+                        <li class="ac-pricing-table__feature">Everything in Pro</li>
+                        <li class="ac-pricing-table__feature">Dedicated account manager</li>
+                        <li class="ac-pricing-table__feature">SLA guarantee</li>
+                        <li class="ac-pricing-table__feature">On-premise deployment</li>
+                    </ul>
+                    <a href="#" class="ac-pricing-table__cta">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         16. TIMELINE
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/timeline</span>
+    <section class="ac-timeline" data-ac-reveal="up">
+        <div class="ac-timeline__container">
+            <div class="ac-timeline__header">
+                <span class="ac-eyebrow">Process</span>
+                <h2 style="font-size: var(--ac-text-3xl); margin-top: var(--ac-space-sm);">How we work</h2>
+            </div>
+            <div class="ac-timeline__list" data-ac-stagger>
+                <div class="ac-timeline__line"></div>
+                <div class="ac-timeline__item">
+                    <div class="ac-timeline__dot"></div>
+                    <span class="ac-timeline__label">Phase 01</span>
+                    <h3 class="ac-timeline__title">Discovery</h3>
+                    <p class="ac-timeline__desc">Understanding the problem space through research and analysis.</p>
+                </div>
+                <div class="ac-timeline__item">
+                    <div class="ac-timeline__dot"></div>
+                    <span class="ac-timeline__label">Phase 02</span>
+                    <h3 class="ac-timeline__title">Strategy</h3>
+                    <p class="ac-timeline__desc">Defining the approach with clarity and measurable objectives.</p>
+                </div>
+                <div class="ac-timeline__item">
+                    <div class="ac-timeline__dot"></div>
+                    <span class="ac-timeline__label">Phase 03</span>
+                    <h3 class="ac-timeline__title">Execution</h3>
+                    <p class="ac-timeline__desc">Building with precision, iterating with purpose.</p>
+                </div>
+                <div class="ac-timeline__item">
+                    <div class="ac-timeline__dot"></div>
+                    <span class="ac-timeline__label">Phase 04</span>
+                    <h3 class="ac-timeline__title">Delivery</h3>
+                    <p class="ac-timeline__desc">Launching with confidence, supporting with commitment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         17. PORTFOLIO GRID
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/portfolio-grid</span>
+    <section class="ac-portfolio-grid" data-ac-reveal="up">
+        <div class="ac-portfolio-grid__container">
+            <div class="ac-portfolio-grid__header">
+                <span class="ac-eyebrow">Selected Work</span>
+                <h2 style="font-size: var(--ac-text-3xl); margin-top: var(--ac-space-sm);">Portfolio</h2>
+            </div>
+            <div class="ac-portfolio-grid__grid" data-ac-stagger>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Branding</span>
+                        <h3 class="ac-portfolio-grid__title">Meridian Studio</h3>
+                    </div>
+                </div>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Development</span>
+                        <h3 class="ac-portfolio-grid__title">Apex Platform</h3>
+                    </div>
+                </div>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Strategy</span>
+                        <h3 class="ac-portfolio-grid__title">Volta Energy</h3>
+                    </div>
+                </div>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Design</span>
+                        <h3 class="ac-portfolio-grid__title">Atlas Architecture</h3>
+                    </div>
+                </div>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Engineering</span>
+                        <h3 class="ac-portfolio-grid__title">Nexus Systems</h3>
+                    </div>
+                </div>
+                <div class="ac-portfolio-grid__item">
+                    <div class="ac-portfolio-grid__overlay">
+                        <span class="ac-portfolio-grid__category">Product</span>
+                        <h3 class="ac-portfolio-grid__title">Prism Analytics</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         18. MARQUEE
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/marquee</span>
+    <div class="ac-marquee">
+        <div class="ac-marquee__track">
+            <div class="ac-marquee__content">
+                <span class="ac-marquee__item">Precision</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Structure</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Clarity</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Design</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Engineering</span><span class="ac-marquee__separator"></span>
+            </div>
+            <div class="ac-marquee__content" aria-hidden="true">
+                <span class="ac-marquee__item">Precision</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Structure</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Clarity</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Design</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Engineering</span><span class="ac-marquee__separator"></span>
+            </div>
+            <div class="ac-marquee__content" aria-hidden="true">
+                <span class="ac-marquee__item">Precision</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Structure</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Clarity</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Design</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Engineering</span><span class="ac-marquee__separator"></span>
+            </div>
+            <div class="ac-marquee__content" aria-hidden="true">
+                <span class="ac-marquee__item">Precision</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Structure</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Clarity</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Design</span><span class="ac-marquee__separator"></span>
+                <span class="ac-marquee__item">Engineering</span><span class="ac-marquee__separator"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         19. VIDEO HERO
+         ════════════════════════════════════════════ -->
+    <span class="demo-label demo-label--on-dark">alpacode/video-hero</span>
+    <section class="ac-video-hero">
+        <div class="ac-video-hero__poster"></div>
+        <div class="ac-video-hero__overlay"></div>
+        <div class="ac-video-hero__content">
+            <span class="ac-eyebrow" style="color: var(--ac-color-text-on-dark-muted);" data-ac-reveal="fade">Showreel 2024</span>
+            <h2 class="ac-video-hero__title" data-ac-reveal="up">See the process<br>in motion</h2>
+            <p class="ac-video-hero__subtitle" data-ac-reveal="fade">A glimpse into how precision and craft come together in every project.</p>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         20. TABS PANEL
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/tabs-panel</span>
+    <section class="ac-tabs-panel" data-ac-reveal="up">
+        <div class="ac-tabs-panel__container">
+            <div class="ac-tabs-panel__tabs" role="tablist">
+                <button class="ac-tabs-panel__tab ac-tabs-panel__tab--active" role="tab" data-tab="0" aria-selected="true">Overview</button>
+                <button class="ac-tabs-panel__tab" role="tab" data-tab="1" aria-selected="false">Features</button>
+                <button class="ac-tabs-panel__tab" role="tab" data-tab="2" aria-selected="false">Specifications</button>
+            </div>
+            <div class="ac-tabs-panel__panels">
+                <div class="ac-tabs-panel__panel ac-tabs-panel__panel--active" role="tabpanel" data-panel="0">
+                    <h3 class="ac-tabs-panel__panel-title">Built for precision</h3>
+                    <p class="ac-tabs-panel__panel-content">Every component is designed with structural clarity and purpose. The system adapts to your needs while maintaining a consistent, architectural aesthetic.</p>
+                </div>
+                <div class="ac-tabs-panel__panel" role="tabpanel" data-panel="1">
+                    <h3 class="ac-tabs-panel__panel-title">Comprehensive toolset</h3>
+                    <p class="ac-tabs-panel__panel-content">From layout blocks to interactive widgets, every piece works together as a cohesive system. Zero dependencies, maximum performance.</p>
+                </div>
+                <div class="ac-tabs-panel__panel" role="tabpanel" data-panel="2">
+                    <h3 class="ac-tabs-panel__panel-title">Technical details</h3>
+                    <p class="ac-tabs-panel__panel-content">WordPress 6.5+, PHP 8.0+, Block API v3. No build step required. Fully accessible with ARIA compliance and reduced motion support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         21. PROGRESS BAR (widget)
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">alpacode/progress-bar</span>
+    <section class="ac-progress-bar" data-ac-reveal="up">
+        <div class="ac-progress-bar__container">
+            <div class="ac-progress-bar__item">
+                <div class="ac-progress-bar__header">
+                    <span class="ac-progress-bar__label">Strategy</span>
+                    <span class="ac-progress-bar__value">85%</span>
+                </div>
+                <div class="ac-progress-bar__track">
+                    <div class="ac-progress-bar__fill" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="ac-progress-bar__item">
+                <div class="ac-progress-bar__header">
+                    <span class="ac-progress-bar__label">Development</span>
+                    <span class="ac-progress-bar__value">92%</span>
+                </div>
+                <div class="ac-progress-bar__track">
+                    <div class="ac-progress-bar__fill" style="width: 92%"></div>
+                </div>
+            </div>
+            <div class="ac-progress-bar__item">
+                <div class="ac-progress-bar__header">
+                    <span class="ac-progress-bar__label">Design</span>
+                    <span class="ac-progress-bar__value">78%</span>
+                </div>
+                <div class="ac-progress-bar__track">
+                    <div class="ac-progress-bar__fill" style="width: 78%"></div>
+                </div>
+            </div>
+            <div class="ac-progress-bar__item">
+                <div class="ac-progress-bar__header">
+                    <span class="ac-progress-bar__label">Optimization</span>
+                    <span class="ac-progress-bar__value">64%</span>
+                </div>
+                <div class="ac-progress-bar__track">
+                    <div class="ac-progress-bar__fill" style="width: 64%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SKELETON SHIMMER (loader utility)
+         ════════════════════════════════════════════ -->
+    <span class="demo-label">loaders/skeleton-shimmer</span>
+    <section class="ac-skeleton-demo">
+        <div class="ac-skeleton-demo__container">
+            <div style="margin-bottom: var(--ac-space-2xl);">
+                <span class="ac-eyebrow">Loading States</span>
+                <h2 style="font-size: var(--ac-text-3xl); margin-top: var(--ac-space-sm);">Skeleton shimmer</h2>
+            </div>
+            <div class="ac-skeleton-demo__grid">
+                <div class="ac-skeleton-demo__card">
+                    <div class="ac-skeleton ac-skeleton--image"></div>
+                    <div class="ac-skeleton ac-skeleton--heading"></div>
+                    <div class="ac-skeleton ac-skeleton--text"></div>
+                    <div class="ac-skeleton ac-skeleton--text ac-skeleton--text-short"></div>
+                </div>
+                <div class="ac-skeleton-demo__card">
+                    <div class="ac-skeleton ac-skeleton--image"></div>
+                    <div class="ac-skeleton ac-skeleton--heading"></div>
+                    <div class="ac-skeleton ac-skeleton--text"></div>
+                    <div class="ac-skeleton ac-skeleton--text ac-skeleton--text-short"></div>
+                </div>
+                <div class="ac-skeleton-demo__card">
+                    <div class="ac-skeleton ac-skeleton--image"></div>
+                    <div class="ac-skeleton ac-skeleton--heading"></div>
+                    <div class="ac-skeleton ac-skeleton--text"></div>
+                    <div class="ac-skeleton ac-skeleton--text ac-skeleton--text-short"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- ════════════════════════════════════════════
          JAVASCRIPT
@@ -812,6 +1318,68 @@
             });
         }
 
+        /* ── Tabs ── */
+        function initTabs() {
+            var container = document.querySelector('.ac-tabs-panel');
+            if (!container) return;
+            var tabs = container.querySelectorAll('.ac-tabs-panel__tab');
+            var panels = container.querySelectorAll('.ac-tabs-panel__panel');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var index = parseInt(this.getAttribute('data-tab'), 10);
+                    tabs.forEach(function(t, i) {
+                        t.classList.toggle('ac-tabs-panel__tab--active', i === index);
+                        t.setAttribute('aria-selected', i === index ? 'true' : 'false');
+                    });
+                    panels.forEach(function(p, i) {
+                        p.classList.toggle('ac-tabs-panel__panel--active', i === index);
+                    });
+                });
+            });
+        }
+
+        /* ── Notice Bar Dismiss ── */
+        function initNoticeBar() {
+            var closeBtn = document.querySelector('.ac-notice-bar__close');
+            if (!closeBtn) return;
+            closeBtn.addEventListener('click', function() {
+                this.closest('.ac-notice-bar').style.display = 'none';
+            });
+        }
+
+        /* ── Back to Top ── */
+        function initBackToTop() {
+            var btn = document.querySelector('.ac-back-to-top');
+            if (!btn) return;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) {
+                    btn.classList.add('ac-back-to-top--visible');
+                } else {
+                    btn.classList.remove('ac-back-to-top--visible');
+                }
+            }, { passive: true });
+
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /* ── Scroll Progress ── */
+        function initScrollProgress() {
+            var bar = document.querySelector('.ac-scroll-progress');
+            if (!bar) return;
+
+            window.addEventListener('scroll', function() {
+                var scrollTop = window.pageYOffset;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight > 0) {
+                    bar.style.width = (scrollTop / docHeight * 100) + '%';
+                }
+            }, { passive: true });
+        }
+
         /* ── Init ── */
         initReveal();
         initStagger();
@@ -819,6 +1387,10 @@
         initCounter();
         initAccordion();
         initTestimonials();
+        initTabs();
+        initNoticeBar();
+        initBackToTop();
+        initScrollProgress();
     })();
     </script>
 </body>

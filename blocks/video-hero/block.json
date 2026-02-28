@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/video-hero",
+    "version": "1.0.0",
+    "title": "Video Hero",
+    "category": "alpacode",
+    "icon": "video-alt3",
+    "description": "Full-height hero with looping video background, dark overlay, and content.",
+    "keywords": ["video", "hero", "background", "banner", "media"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": { "type": "string", "default": "" },
+        "title": { "type": "string", "default": "" },
+        "subtitle": { "type": "string", "default": "" },
+        "ctaText": { "type": "string", "default": "" },
+        "ctaUrl": { "type": "string", "default": "" },
+        "videoUrl": { "type": "string", "default": "" },
+        "videoId": { "type": "number", "default": 0 },
+        "posterImageId": { "type": "number", "default": 0 },
+        "posterImageUrl": { "type": "string", "default": "" },
+        "overlayOpacity": { "type": "number", "default": 75 },
+        "height": { "type": "string", "default": "90vh" }
+    },
+    "supports": {
+        "align": ["full"],
+        "html": false,
+        "color": { "background": false, "text": true },
+        "spacing": { "padding": false, "margin": false }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Showreel 2024",
+            "title": "Motion with purpose",
+            "subtitle": "Every frame deliberate. Every transition earned.",
+            "ctaText": "Watch Reel",
+            "ctaUrl": "#",
+            "overlayOpacity": 75,
+            "height": "90vh"
+        }
+    }
+}

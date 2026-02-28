@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/timeline",
+    "version": "1.0.0",
+    "title": "Timeline",
+    "category": "alpacode",
+    "icon": "backup",
+    "description": "Vertical timeline with steps, dates, and descriptions. Hairline connector with dot markers.",
+    "keywords": ["timeline", "history", "process", "steps", "milestones"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": { "type": "string", "default": "" },
+        "title": { "type": "string", "default": "" },
+        "items": { "type": "array", "default": [], "items": { "type": "object" } }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": true, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Process",
+            "title": "How we work",
+            "items": [
+                { "label": "01", "title": "Discovery", "description": "Understanding your goals, constraints, and vision." },
+                { "label": "02", "title": "Strategy", "description": "Defining the approach with clarity and precision." },
+                { "label": "03", "title": "Execution", "description": "Building with discipline and attention to detail." },
+                { "label": "04", "title": "Delivery", "description": "Refined, tested, and ready for the world." }
+            ]
+        }
+    }
+}

@@ -1,0 +1,98 @@
+/**
+ * alpacode/progress-bar — Frontend Styles
+ */
+
+.ac-progress-bar {
+    padding: var(--ac-space-section) 0;
+    background: var(--ac-color-surface);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 200px;
+}
+
+/* ── Container ── */
+
+.ac-progress-bar__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+/* ── Item ── */
+
+.ac-progress-bar__item {
+    margin-bottom: var(--ac-space-xl);
+}
+
+.ac-progress-bar__item:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Header ── */
+
+.ac-progress-bar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--ac-space-sm);
+}
+
+/* ── Label ── */
+
+.ac-progress-bar__label {
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    color: var(--ac-color-text);
+}
+
+/* ── Value ── */
+
+.ac-progress-bar__value {
+    font-family: var(--ac-font-mono);
+    font-size: var(--ac-text-sm);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ac-color-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Track ── */
+
+.ac-progress-bar__track {
+    position: relative;
+    height: 2px;
+    background: var(--ac-color-border);
+}
+
+/* ── Fill ── */
+
+.ac-progress-bar__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--ac-color-accent);
+    transition: width 1200ms var(--ac-ease-precise);
+    transform-origin: left;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .ac-progress-bar__container {
+        padding: 0 var(--ac-space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .ac-progress-bar__label {
+        font-size: var(--ac-text-xs);
+    }
+
+    .ac-progress-bar__value {
+        font-size: var(--ac-text-xs);
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/team-grid",
+    "version": "1.0.0",
+    "title": "Team Grid",
+    "category": "alpacode",
+    "icon": "groups",
+    "description": "Team member grid with images, names, roles, and optional bios. Hairline-bordered layout.",
+    "keywords": ["team", "members", "people", "staff", "about"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "eyebrow": { "type": "string", "default": "" },
+        "title": { "type": "string", "default": "" },
+        "subtitle": { "type": "string", "default": "" },
+        "columns": { "type": "number", "default": 4 },
+        "items": { "type": "array", "default": [], "items": { "type": "object" } }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": { "background": true, "text": true },
+        "spacing": { "padding": true, "margin": ["top", "bottom"] }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "eyebrow": "Our Team",
+            "title": "The people behind the work",
+            "columns": 4,
+            "items": [
+                { "name": "Alex Morgan", "role": "Principal", "bio": "" },
+                { "name": "Sarah Chen", "role": "Design Lead", "bio": "" },
+                { "name": "James Park", "role": "Engineering", "bio": "" },
+                { "name": "Elena Vasquez", "role": "Strategy", "bio": "" }
+            ]
+        }
+    }
+}

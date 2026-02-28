@@ -90,6 +90,23 @@ add_action('wp_enqueue_scripts', function () {
         AC_BLOCKS_VERSION,
         ['strategy' => 'defer']
     );
+
+    // Loaders & utilities CSS
+    wp_enqueue_style(
+        'ac-loaders',
+        AC_BLOCKS_URL . 'assets/css/loaders.css',
+        ['ac-tokens'],
+        AC_BLOCKS_VERSION
+    );
+
+    // Loaders & utilities JS
+    wp_enqueue_script(
+        'ac-loaders',
+        AC_BLOCKS_URL . 'assets/js/loaders.js',
+        [],
+        AC_BLOCKS_VERSION,
+        ['strategy' => 'defer']
+    );
 });
 
 /**
