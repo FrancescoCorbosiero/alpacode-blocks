@@ -102,16 +102,22 @@
 /* ── Panel ── */
 
 .ac-faq-accordion__panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 400ms var(--ac-ease-out);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 400ms var(--ac-ease-out);
 }
 
 .ac-faq-accordion__panel--open {
-    max-height: 500px;
+    grid-template-rows: 1fr;
 }
 
 .ac-faq-accordion__answer {
+    overflow: hidden;
+    padding-bottom: 0;
+    transition: padding-bottom 400ms var(--ac-ease-out);
+}
+
+.ac-faq-accordion__panel--open .ac-faq-accordion__answer {
     padding-bottom: var(--ac-space-lg);
 }
 
@@ -126,7 +132,8 @@
 /* ── Reduced Motion ── */
 
 @media (prefers-reduced-motion: reduce) {
-    .ac-faq-accordion__panel {
+    .ac-faq-accordion__panel,
+    .ac-faq-accordion__answer {
         transition: none;
     }
 
