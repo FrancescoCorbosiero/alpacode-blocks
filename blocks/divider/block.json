@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "alpacode/divider",
+    "version": "1.0.0",
+    "title": "Divider",
+    "category": "alpacode",
+    "icon": "minus",
+    "description": "A hairline divider with optional spacing and animation. Architectural accent element.",
+    "keywords": ["divider", "separator", "line", "hairline"],
+    "textdomain": "alpacode-blocks",
+    "attributes": {
+        "variant": {
+            "type": "string",
+            "default": "full"
+        },
+        "width": {
+            "type": "string",
+            "default": "100"
+        },
+        "animated": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false,
+        "color": {
+            "background": false,
+            "text": false
+        },
+        "spacing": {
+            "padding": false,
+            "margin": ["top", "bottom"]
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php",
+    "example": {
+        "attributes": {
+            "variant": "full",
+            "width": "100",
+            "animated": true
+        }
+    }
+}

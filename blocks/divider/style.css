@@ -1,0 +1,29 @@
+/**
+ * alpacode/divider — Frontend Styles
+ */
+
+.ac-divider {
+    padding: var(--ac-space-2xl) 0;
+}
+
+.ac-divider__container {
+    max-width: var(--ac-max-width);
+    margin: 0 auto;
+    padding: 0 var(--ac-space-xl);
+}
+
+.ac-divider--full .ac-divider__container {
+    max-width: none;
+    padding: 0;
+}
+
+.ac-divider--narrow .ac-divider__container {
+    max-width: var(--ac-max-width-narrow);
+}
+
+.ac-divider__line {
+    border: none;
+    border-top: 1px solid var(--ac-color-border);
+    margin: 0;
+    transform-origin: left;
+}
