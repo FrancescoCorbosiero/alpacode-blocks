@@ -98,8 +98,8 @@
             "fontSizes": [
                 { "slug": "ac-xs",      "size": "clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem)",    "name": "Extra Small" },
                 { "slug": "ac-sm",      "size": "clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem)",   "name": "Small" },
-                { "slug": "ac-base",    "size": "clamp(0.9375rem, 0.9rem + 0.2vw, 1rem)",        "name": "Base" },
-                { "slug": "ac-lg",      "size": "clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem)",     "name": "Large" },
+                { "slug": "ac-base",    "size": "clamp(1rem, 0.95rem + 0.25vw, 1.125rem)",        "name": "Base" },
+                { "slug": "ac-lg",      "size": "clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem)",   "name": "Large" },
                 { "slug": "ac-xl",      "size": "clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem)",        "name": "Extra Large" },
                 { "slug": "ac-2xl",     "size": "clamp(1.5rem, 1.2rem + 0.9vw, 2rem)",           "name": "2XL" },
                 { "slug": "ac-3xl",     "size": "clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem)",      "name": "3XL" },
@@ -426,7 +426,10 @@
     },
     "templateParts": [
         { "name": "header", "title": "Header", "area": "header" },
-        { "name": "footer", "title": "Footer", "area": "footer" }
+        { "name": "header-center-logo", "title": "Header (Center Logo)", "area": "header" },
+        { "name": "footer", "title": "Footer", "area": "footer" },
+        { "name": "footer-minimal", "title": "Footer (Minimal)", "area": "footer" },
+        { "name": "footer-columns", "title": "Footer (Columns)", "area": "footer" }
     ],
     "customTemplates": [
         { "name": "page-no-title", "title": "Page (No Title)", "postTypes": [ "page" ] },
