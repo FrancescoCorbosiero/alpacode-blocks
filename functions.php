@@ -20,6 +20,10 @@ add_action('after_setup_theme', function () {
     add_theme_support('editor-styles');
     add_theme_support('responsive-embeds');
     add_theme_support('post-thumbnails');
+
+    // Load base styles in Site Editor for template part previews.
+    add_editor_style('assets/css/tokens.css');
+    add_editor_style('assets/css/base.css');
 });
 
 /**
