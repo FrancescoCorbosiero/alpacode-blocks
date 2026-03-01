@@ -40,6 +40,21 @@
     letter-spacing: 0.04em;
 }
 
+/* ── Template part previews in Site Editor ── */
+
+/* Prevent transparent header from breaking editor layout */
+.ac-header-transparent {
+    position: relative !important;
+    background: var(--ac-color-surface) !important;
+    border-bottom: 1px solid var(--ac-color-border) !important;
+}
+
+.ac-header-transparent .wp-block-site-title a,
+.ac-header-transparent .wp-block-navigation a,
+.ac-header-transparent .wp-block-navigation .wp-block-navigation-item__content {
+    color: var(--ac-color-text) !important;
+}
+
 /* Selected state */
 .is-selected .ac-editor-placeholder {
     outline: 1px solid #64748B;
