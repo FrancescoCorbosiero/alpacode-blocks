@@ -186,3 +186,56 @@ a:focus-visible {
 :focus:not(:focus-visible) {
     outline: none;
 }
+
+/* ── Header: Center Logo Animation ── */
+
+.ac-header-center {
+    display: grid !important;
+    grid-template-rows: 1fr auto;
+    z-index: var(--ac-z-sticky);
+    transition: grid-template-rows 0.6s var(--ac-ease-precise),
+                box-shadow 0.6s var(--ac-ease-precise);
+}
+
+.ac-header-center.is-scrolled {
+    grid-template-rows: 0fr auto;
+    box-shadow: var(--ac-shadow-sm);
+}
+
+.ac-header-center__logo {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.ac-header-center__nav .ac-header-center__compact-title {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.4s var(--ac-ease-out),
+                transform 0.4s var(--ac-ease-out);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.ac-header-center.is-scrolled .ac-header-center__nav .ac-header-center__compact-title {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.ac-header-center.is-scrolled .ac-header-center__nav {
+    border-top-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ac-header-center {
+        transition: none;
+    }
+    .ac-header-center__nav .ac-header-center__compact-title {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+    .ac-header-center.is-scrolled {
+        grid-template-rows: 0fr auto;
+    }
+}

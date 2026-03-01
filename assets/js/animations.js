@@ -303,6 +303,41 @@
         });
     };
 
+    /* ── Header Shrink (Center Logo) ── */
+
+    AlpacodeBlocks.initHeaderShrink = function () {
+        var header = document.querySelector('.ac-header-center');
+        if (!header) return;
+
+        var threshold = 50;
+        var ticking = false;
+        var scrolled = false;
+
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(function () {
+                    var shouldScroll = window.scrollY > threshold;
+
+                    if (shouldScroll !== scrolled) {
+                        scrolled = shouldScroll;
+
+                        if (scrolled) {
+                            header.classList.add('is-scrolled');
+                        } else {
+                            header.classList.remove('is-scrolled');
+                        }
+                    }
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    };
+
     /* ── Initialize All ── */
 
     function init() {
@@ -314,6 +349,7 @@
         AlpacodeBlocks.initLine();
         AlpacodeBlocks.initParallax();
         AlpacodeBlocks.initMagnetic();
+        AlpacodeBlocks.initHeaderShrink();
     }
 
     if (document.readyState === 'loading') {
