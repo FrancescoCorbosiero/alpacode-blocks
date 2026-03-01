@@ -303,10 +303,10 @@
         });
     };
 
-    /* ── Header Shrink (Center Logo) ── */
+    /* ── Header Scroll (Transparent → Sticky) ── */
 
-    AlpacodeBlocks.initHeaderShrink = function () {
-        var header = document.querySelector('.ac-header-center');
+    AlpacodeBlocks.initHeaderScroll = function () {
+        var header = document.querySelector('.ac-header-transparent');
         if (!header) return;
 
         var threshold = 50;
@@ -349,7 +349,7 @@
         AlpacodeBlocks.initLine();
         AlpacodeBlocks.initParallax();
         AlpacodeBlocks.initMagnetic();
-        AlpacodeBlocks.initHeaderShrink();
+        AlpacodeBlocks.initHeaderScroll();
     }
 
     if (document.readyState === 'loading') {
