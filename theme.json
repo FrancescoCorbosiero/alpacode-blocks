@@ -426,7 +426,7 @@
     },
     "templateParts": [
         { "name": "header", "title": "Header", "area": "header" },
-        { "name": "header-center-logo", "title": "Header (Center Logo)", "area": "header" },
+        { "name": "header-transparent", "title": "Header (Transparent)", "area": "header" },
         { "name": "footer", "title": "Footer", "area": "footer" },
         { "name": "footer-minimal", "title": "Footer (Minimal)", "area": "footer" },
         { "name": "footer-columns", "title": "Footer (Columns)", "area": "footer" }
